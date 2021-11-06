@@ -93,6 +93,7 @@ namespace project_take_2
             hero.Draw(_spriteBatch);
 
             _spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

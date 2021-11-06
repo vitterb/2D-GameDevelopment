@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
 using project_take_2.Content.Enemies;
-using project_take_2.Content.Input;
 using project_take_2.Content.interfaces;
 
 
@@ -18,7 +17,8 @@ namespace project_take_2.Content.Hero
         private AnimationClass animation;
         private AnimationClass animationIdle;
         private AnimationClass animationDie;
-        private Rectangle[] array = new Rectangle[10]; 
+        private Rectangle[] array = new Rectangle[10];
+        private Rectangle hitbox;
         private bool live = true;
         private int counter = 0;
         private int counter2 = 1;
@@ -42,6 +42,7 @@ namespace project_take_2.Content.Hero
             
             animation = new AnimationClass();
             positionAndSize = new Rectangle(_x, _y, _width, _height);
+            hitbox = new Rectangle(0, 0, _width, _height);
             animation.AddFrame(new AnimationFrame(new Rectangle(50, 50, 833, 292)));
             animation.AddFrame(new AnimationFrame(new Rectangle(883, 50, 833, 292)));
             animation.AddFrame(new AnimationFrame(new Rectangle(50, 342, 833, 292)));
@@ -90,7 +91,7 @@ namespace project_take_2.Content.Hero
             {
                 IdleDraw(_spriteBatch);
             }
-            if (positionAndSize.Intersects(Bear.hitbox))
+            if (hitbox.Intersects(Bear.hitbox))
             {
                 DieDraw(_spriteBatch);
             }
@@ -141,6 +142,7 @@ namespace project_take_2.Content.Hero
 
         public void update(GameTime gameTime)
         {
+            hitboxUpdate();
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && live)
             {
                 flip = SpriteEffects.FlipHorizontally;
@@ -155,11 +157,15 @@ namespace project_take_2.Content.Hero
             {
                 animationIdle.Update(gameTime, 6);
             }
-            if (positionAndSize.Intersects(Bear.hitbox) || !live)
+            if (hitbox.Intersects(Bear.hitbox) || !live)
             {
                 live = false;
-                animationDie.Update(gameTime, 6);
             }
+        }
+        private void hitboxUpdate()
+        {
+            hitbox.X = positionAndSize.X -185;
+            hitbox.Y = positionAndSize.Y -185;
         }
     }
 }
