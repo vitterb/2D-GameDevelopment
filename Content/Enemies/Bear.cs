@@ -38,42 +38,11 @@ namespace project_take_2.Content.Enemies
         }
         public override void Move(int deceleration, int speed)
         {
-            //positionAndSize.X += speed / deceleration;
+            positionAndSize.X += speed / deceleration;
             hitbox.X = positionAndSize.X + offsetX;
             hitbox.Y = positionAndSize.Y;
             hitbox.Width = positionAndSize.Width - widthOffset;
             hitbox.Height = positionAndSize.Height - HeightOffset;
-        }
-        public override void update(GameTime gameTime)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                positionAndSize.Y -= 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                positionAndSize.Y += 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                positionAndSize.X -= 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                positionAndSize.X += 1;
-            }
-            if (Game1.testblockRec.Intersects(hitbox))
-            {
-                if (Game1.testcolor == Color.White)
-                {
-                    Game1.testcolor = Color.LawnGreen;
-                }
-                else
-                {
-                    Game1.testcolor = Color.White;
-                }
-            }
-            base.update(gameTime);
         }
     }
 }
