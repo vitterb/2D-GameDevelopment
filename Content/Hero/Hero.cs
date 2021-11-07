@@ -10,25 +10,27 @@ namespace project_take_2.Content.Hero
 {
     public class Hero : IHero
     {
-        public static Rectangle positionAndSize;
-        private Texture2D _texture;
-        private Texture2D _textureIdle;
-        private Texture2D _textureDie;
-        private AnimationClass animation;
-        private AnimationClass animationIdle;
-        private AnimationClass animationDie;
-        private Rectangle[] array = new Rectangle[10];
+        public static Rectangle positionAndSize; 
+        private readonly Texture2D _texture;
+        private readonly Texture2D _textureIdle;
+        private readonly Texture2D _textureDie;
+        private readonly AnimationClass animation;
+        private readonly AnimationClass animationIdle;
+        private readonly Rectangle[] array = new Rectangle[10];
         private Rectangle hitbox;
-        private bool live = true;
+        public static bool live = true;
         private int counter = 0;
         private int counter2 = 1;
-
-        private int _width;
-        private int _height;
-        private int _x;
-        private int _y;
+        private readonly int OffsetX = 25;
+        private readonly int frameworkwidth = 250;
+        private readonly int frameworkHeight = 200;
+        private readonly int frameworkX = 300;
+        private readonly int frameworkXb = 1133;
+        private readonly int _width;
+        private readonly int _height;
+        private readonly int _x;
+        private readonly int _y;
         private SpriteEffects flip = SpriteEffects.None;
-        
         
         public Hero(Texture2D textureWalking,Texture2D textureIdle, Texture2D textureDie, int x, int y, int width, int height)
         {
@@ -42,39 +44,39 @@ namespace project_take_2.Content.Hero
             
             animation = new AnimationClass();
             positionAndSize = new Rectangle(_x, _y, _width, _height);
-            hitbox = new Rectangle(0, 0, _width, _height);
-            animation.AddFrame(new AnimationFrame(new Rectangle(50, 50, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(883, 50, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(50, 342, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(883, 342, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(50, 634, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(883, 634, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(50, 926, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(883, 926, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(50, 1218, 833, 292)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(883, 1218, 833, 292)));
+            hitbox = new Rectangle(0, 0, _texture.Width/2, _texture.Height/2);
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
             animationIdle = new AnimationClass();
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(50, 50, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(883, 50, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(50, 342, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(883, 342, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(50, 634, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(883, 634, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(50, 926, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(883, 926, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(50, 1218, 833, 292)));
-            animationIdle.AddFrame(new AnimationFrame(new Rectangle(883, 1218, 833, 292)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
+            animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
 
-            array[0] = new Rectangle(50, 50, 833, 292);
-            array[1] = new Rectangle(883, 50, 833, 292);
-            array[2] = new Rectangle(50, 342, 833, 292);
-            array[3] = new Rectangle(883, 342, 833, 292);
-            array[4] = new Rectangle(50, 634, 833, 292);
-            array[5] = new Rectangle(883, 634, 833, 292);
-            array[6] = new Rectangle(50, 926, 833, 292);
-            array[7] = new Rectangle(883, 926, 833, 292);
-            array[8] = new Rectangle(50, 1218, 833, 292);
-            array[9] = new Rectangle(883, 1218, 833, 292);
+            array[0] = new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight);
+            array[1] = new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight);
+            array[2] = new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight);
+            array[3] = new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight);
+            array[4] = new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight);
+            array[5] = new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight);
+            array[6] = new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight);
+            array[7] = new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight);
+            array[8] = new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight);
+            array[9] = new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight);
         }
        
         public void Draw(SpriteBatch _spriteBatch)
@@ -157,15 +159,17 @@ namespace project_take_2.Content.Hero
             {
                 animationIdle.Update(gameTime, 6);
             }
-            if (hitbox.Intersects(Bear.hitbox) || !live)
+            if (hitbox.Intersects(Enemy.hitbox) || !live)
             {
                 live = false;
             }
         }
         private void hitboxUpdate()
         {
-            hitbox.X = positionAndSize.X -185;
-            hitbox.Y = positionAndSize.Y -185;
+            hitbox.X = positionAndSize.X + OffsetX;
+            hitbox.Y = positionAndSize.Y;
+            hitbox.Width = positionAndSize.Width - OffsetX ;
+            hitbox.Height = positionAndSize.Height ;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
@@ -12,7 +13,7 @@ namespace project_take_2
         private SpriteBatch _spriteBatch;
         private KeyInput keyInput;
 
-        private const int ScreenW = 1024, ScreenH = 768;
+        private const int ScreenW = 1440, ScreenH = 900;
 
         private Wolf wolf;
         private Texture2D wolfSprite;
@@ -27,6 +28,11 @@ namespace project_take_2
         private Texture2D heroSprite;
         private Texture2D heroSpriteIdle;
         private Texture2D heroSpriteDie;
+
+        private Texture2D testblock;
+        public static  Rectangle testblockRec;
+
+        public static Color testcolor = Color.Azure;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -58,12 +64,7 @@ namespace project_take_2
             heroSprite = Content.Load<Texture2D>("Sprites/heroPosibility1");
             heroSpriteIdle = Content.Load<Texture2D>("Sprites/heroPosibilityIdle");
             heroSpriteDie = Content.Load<Texture2D>("Sprites/heroPosibilityDie");
-            
 
-            eagle = new Eagle(eagleSprite, 0, 0, 200, 200);
-            wolf = new Wolf(wolfSprite, 0, 100, 200, 200);
-            bear = new Bear(bearSprite, 300, 200, 200, 200);
-            hero = new Hero(heroSprite,heroSpriteIdle,heroSpriteDie, 0, 400, 200, 200);
             keyInput = new KeyInput();
 
 
@@ -72,25 +73,21 @@ namespace project_take_2
 
         protected override void Update(GameTime gameTime)
         {
-            eagle.update(gameTime);
-            wolf.update(gameTime);
-            bear.update(gameTime);
-            hero.update(gameTime);
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
+
             keyInput.Update();
 
-            base.Update(gameTime);
+                base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
-            
-            eagle.Draw(_spriteBatch);
-            wolf.Draw(_spriteBatch);
-            bear.Draw(_spriteBatch);
-            hero.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
