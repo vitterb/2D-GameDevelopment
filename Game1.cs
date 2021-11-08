@@ -4,30 +4,22 @@ using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
+using project_take_2.Content.levels;
 
 namespace project_take_2
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public static  GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private KeyInput keyInput;
 
         private const int ScreenW = 1440, ScreenH = 900;
 
         private Wolf wolf;
-        private Texture2D wolfSprite;
-
-        public static  Bear bear;
-        private Texture2D bearSprite;
-
         private Eagle eagle;
-        private Texture2D eagleSprite;
-
+        private Bear bear;
         private Hero hero;
-        private Texture2D heroSprite;
-        private Texture2D heroSpriteIdle;
-        private Texture2D heroSpriteDie;
 
         private Texture2D testblock;
         public static  Rectangle testblockRec;
@@ -58,17 +50,11 @@ namespace project_take_2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            wolfSprite = Content.Load<Texture2D>("Sprites/wolf2");
-            bearSprite = Content.Load<Texture2D>("Sprites/bear");
-            eagleSprite = Content.Load<Texture2D>("Sprites/Eagle");
-            heroSprite = Content.Load<Texture2D>("Sprites/heroPosibility1");
-            heroSpriteIdle = Content.Load<Texture2D>("Sprites/heroPosibilityIdle");
-            heroSpriteDie = Content.Load<Texture2D>("Sprites/heroPosibilityDie");
-
             keyInput = new KeyInput();
-
-
             // TODO: use this.Content to load your game content here
+
+            hero = new Hero(10, 10, 150, 150);
+            hero.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -78,9 +64,11 @@ namespace project_take_2
                 Exit();
             }
 
+            hero.update(gameTime);
+
             keyInput.Update();
 
-                base.Update(gameTime);
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -88,6 +76,8 @@ namespace project_take_2
             GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
+
+            hero.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

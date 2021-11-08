@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using project_take_2.Content.Animation;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.interfaces;
@@ -10,15 +12,20 @@ namespace project_take_2.Content.Hero
 {
     public class Hero : IHero
     {
-        public static Rectangle positionAndSize; 
-        private readonly Texture2D _texture;
-        private readonly Texture2D _textureIdle;
-        private readonly Texture2D _textureDie;
+        #region variables 
+        private Texture2D _texture;
+        private Texture2D _textureIdle;
+        private Texture2D _textureDie;
+        private Texture2D _textureJump;
         private readonly AnimationClass animation;
         private readonly AnimationClass animationIdle;
+        private readonly AnimationClass animationJump;
         private readonly Rectangle[] array = new Rectangle[10];
-        private Rectangle hitbox;
+        private RectangleF hitbox;
+        public static RectangleF positionAndSize;
+        public static RectangleF velocity;
         public static bool live = true;
+        public static bool hasJumped = false;
         private int counter = 0;
         private int counter2 = 1;
         private readonly int OffsetX = 25;
@@ -31,20 +38,18 @@ namespace project_take_2.Content.Hero
         private readonly int _x;
         private readonly int _y;
         private SpriteEffects flip = SpriteEffects.None;
-        
-        public Hero(Texture2D textureWalking,Texture2D textureIdle, Texture2D textureDie, int x, int y, int width, int height)
-        {
-            _texture = textureWalking;
-            _textureIdle = textureIdle;
-            _textureDie = textureDie;
+        #endregion
+        #region Constructor
+        public Hero( int x, int y, int width, int height)
+        {   
             _width = width;
             _height = height;
             _x = x;
             _y = y;
-            
+
             animation = new AnimationClass();
-            positionAndSize = new Rectangle(_x, _y, _width, _height);
-            hitbox = new Rectangle(0, 0, _texture.Width/2, _texture.Height/2);
+            positionAndSize = new RectangleF(_x, _y, _width, _height);
+            hitbox = new Rectangle(0, 0, _width, _height);
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight)));
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight)));
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight)));
@@ -66,6 +71,17 @@ namespace project_take_2.Content.Hero
             animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight)));
             animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
             animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
+            animationJump = new AnimationClass();
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
 
             array[0] = new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight);
             array[1] = new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight);
@@ -78,16 +94,28 @@ namespace project_take_2.Content.Hero
             array[8] = new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight);
             array[9] = new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight);
         }
-       
+        #endregion region
+        #region Methodes
+        public void LoadContent(ContentManager Content)
+        {
+            _texture = Content.Load<Texture2D>("Sprites/heroPosibility1");
+            _textureIdle = Content.Load<Texture2D>("Sprites/heroPosibilityIdle");
+            _textureDie = Content.Load<Texture2D>("Sprites/heroPosibilityDie");
+            _textureJump = Content.Load<Texture2D>("Sprites/heroPosibilityJump");
+        }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)&& live )
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)&& live && hasJumped == false)
             {
                 MoveDraw(_spriteBatch);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live )
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false)
             {
                 MoveDraw(_spriteBatch);
+            }
+            if (hasJumped)
+            {
+                JumpDraw(_spriteBatch);
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down) && live)
             {
@@ -103,8 +131,20 @@ namespace project_take_2.Content.Hero
         {
             _spriteBatch.Draw(
                 _texture,
-                positionAndSize,
+                (Rectangle)positionAndSize,
                 animation.currentFrame.Source,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                flip,
+                0);
+        }
+        private void JumpDraw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Draw(
+                _textureJump,
+                (Rectangle)positionAndSize,
+                animationIdle.currentFrame.Source,
                 Color.White,
                 0,
                 new Vector2(0, 0),
@@ -115,7 +155,7 @@ namespace project_take_2.Content.Hero
         {
             _spriteBatch.Draw(
                 _textureIdle,
-                positionAndSize,
+                (Rectangle)positionAndSize,
                 animationIdle.currentFrame.Source,
                 Color.White,
                 0,
@@ -133,7 +173,7 @@ namespace project_take_2.Content.Hero
             }
             _spriteBatch.Draw(
                 _textureDie,
-                positionAndSize,
+                (Rectangle)positionAndSize,
                 array[counter],
                 Color.White,
                 0,
@@ -145,6 +185,7 @@ namespace project_take_2.Content.Hero
         public void update(GameTime gameTime)
         {
             hitboxUpdate();
+            positionAndSize.Y += velocity.Y;
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && live)
             {
                 flip = SpriteEffects.FlipHorizontally;
@@ -159,9 +200,22 @@ namespace project_take_2.Content.Hero
             {
                 animationIdle.Update(gameTime, 6);
             }
-            if (hitbox.Intersects(Enemy.hitbox) || !live)
+            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||!live)
             {
                 live = false;
+            }
+            if(hasJumped == true)
+            {
+                float i = 1;
+                velocity.Y += 0.15f * i;
+            }
+            if (hasJumped == false)
+            {
+                velocity.Y = 0f;
+            }
+            if (positionAndSize.Y + positionAndSize.Height >= 750)
+            {
+                hasJumped = false;
             }
         }
         private void hitboxUpdate()
@@ -171,5 +225,6 @@ namespace project_take_2.Content.Hero
             hitbox.Width = positionAndSize.Width - OffsetX ;
             hitbox.Height = positionAndSize.Height ;
         }
+        #endregion
     }
 }

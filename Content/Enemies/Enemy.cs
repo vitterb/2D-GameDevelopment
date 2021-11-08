@@ -7,11 +7,13 @@ namespace project_take_2.Content.Enemies
 {
     public class Enemy : IEnemies
     {
+        // setting up variables for the enemy classes.
+
+        #region variables 
+
         protected Rectangle positionAndSize;
-        public static Rectangle hitbox;
         protected Texture2D _texture;
         protected AnimationClass animation;
-
         protected int _width;
         protected int _height;
         protected int _x;
@@ -28,7 +30,10 @@ namespace project_take_2.Content.Enemies
         protected int offsetX;
         protected int offsetY;
         protected SpriteEffects flip = SpriteEffects.None;
-        
+
+        #endregion
+
+        // Drawing the sprite no need to touch this!
         public virtual void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(
@@ -42,19 +47,18 @@ namespace project_take_2.Content.Enemies
                 0);
         }
 
+        // Moving the Enemy use speed and deceleration use override!
         public virtual void Move(int deceleration, int speed)
         {
             positionAndSize.X += speed / deceleration;
-            hitbox.Y = positionAndSize.Y;
-            hitbox.X = positionAndSize.X;
-            hitbox.Width = positionAndSize.Width;
-            hitbox.Height = positionAndSize.Height;
         }
 
+        // Updating the Enemy 
         public virtual void update(GameTime gameTime)
         {
+            SetHitbox();
             Move(_slowdown, _speed);
-            if (positionAndSize.X >= 824)
+            if (positionAndSize.X >= 1440)
             {
                 _speed *= -1;
                 flip = SpriteEffects.FlipHorizontally;
@@ -65,6 +69,11 @@ namespace project_take_2.Content.Enemies
                 flip = SpriteEffects.None;
             }
             animation.Update(gameTime, 6);
+        }
+
+        public virtual void SetHitbox()
+        {
+            // update in the class of the enemy.
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
@@ -8,9 +9,10 @@ namespace project_take_2.Content.Enemies
     class Eagle : Enemy
     {
         public static Rectangle hitbox;
-        public Eagle(Texture2D texture, int x, int y, int width, int height)
+        private Texture2D eagleSprite;
+        public Eagle(int x, int y, int width, int height)
         {
-            _texture = texture;
+            _texture = eagleSprite;
             _width = width;
             _height = height;
             _x = x;
@@ -38,10 +40,18 @@ namespace project_take_2.Content.Enemies
         public override void Move(int deceleration, int speed)
         {
             positionAndSize.X += speed / deceleration;
+        }
+        public override void SetHitbox()
+        {
             hitbox.X = positionAndSize.X + offsetX;
             hitbox.Y = positionAndSize.Y;
             hitbox.Width = positionAndSize.Width - widthOffset;
             hitbox.Height = positionAndSize.Height - HeightOffset;
+        }
+
+        public void LoadContent(ContentManager Content)
+        {
+            eagleSprite = Content.Load<Texture2D>("Sprites/Eagle");
         }
     }
 }
