@@ -72,16 +72,16 @@ namespace project_take_2.Content.Hero
             animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
             animationIdle.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
             animationJump = new AnimationClass();
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight)));
-            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 0, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 0, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 292, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 292, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 584, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 584, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 876, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 876, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1168, frameworkwidth, frameworkHeight + 65)));
+            animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1168, frameworkwidth, frameworkHeight + 65)));
 
             array[0] = new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight);
             array[1] = new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight);
@@ -113,7 +113,7 @@ namespace project_take_2.Content.Hero
             {
                 MoveDraw(_spriteBatch);
             }
-            if (hasJumped)
+            if (hasJumped == true)
             {
                 JumpDraw(_spriteBatch);
             }
@@ -144,7 +144,7 @@ namespace project_take_2.Content.Hero
             _spriteBatch.Draw(
                 _textureJump,
                 (Rectangle)positionAndSize,
-                animationIdle.currentFrame.Source,
+                animationJump.currentFrame.Source,
                 Color.White,
                 0,
                 new Vector2(0, 0),
@@ -186,17 +186,17 @@ namespace project_take_2.Content.Hero
         {
             hitboxUpdate();
             positionAndSize.Y += velocity.Y;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) && live)
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) && live && hasJumped == false)
             {
                 flip = SpriteEffects.FlipHorizontally;
                 animation.Update(gameTime, 6);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live)
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false)
             {
                 flip = SpriteEffects.None;
                 animation.Update(gameTime, 6);
             }
-            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live )
+            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live && hasJumped == false )
             {
                 animationIdle.Update(gameTime, 6);
             }
@@ -207,7 +207,8 @@ namespace project_take_2.Content.Hero
             if(hasJumped == true)
             {
                 float i = 1;
-                velocity.Y += 0.15f * i;
+                velocity.Y += 0.005f * i;
+                animationJump.Update(gameTime, 6);
             }
             if (hasJumped == false)
             {
