@@ -41,6 +41,7 @@ namespace project_take_2.Content.Hero
         private SpriteEffects flip = SpriteEffects.None;
 
         #endregion
+
         #region Constructor
         public Hero( int x, int y, int width, int height)
         {   
@@ -97,6 +98,7 @@ namespace project_take_2.Content.Hero
             array[9] = new Rectangle(frameworkXb, 1218, frameworkwidth+25, frameworkHeight+10);
         }
         #endregion region
+
         #region Methodes
         public void LoadContent(ContentManager Content)
         {
@@ -111,7 +113,7 @@ namespace project_take_2.Content.Hero
             {
                 MoveDraw(_spriteBatch);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false )
             {
                 MoveDraw(_spriteBatch);
             }

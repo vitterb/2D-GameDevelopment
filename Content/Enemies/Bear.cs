@@ -9,8 +9,11 @@ namespace project_take_2.Content.Enemies
 {
     public class Bear : Enemy
     {
+        #region variables
         public static Rectangle hitbox;
-        public static Bear bear;
+        #endregion
+
+        #region constructor
         public Bear(int x, int y, int width, int height)
         {
             // setting up the bear enemy
@@ -45,7 +48,9 @@ namespace project_take_2.Content.Enemies
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1652, frameworkWidth, frameworkHeight)));
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1652, frameworkWidth, frameworkHeight)));
         }
+        #endregion
 
+        #region Methodes
         // configuring the hitbox
         public override void SetHitbox()
         {
@@ -59,6 +64,7 @@ namespace project_take_2.Content.Enemies
         {
             _texture = Content.Load<Texture2D>("Sprites/bear");
         }
+        #endregion
     }
 
 }

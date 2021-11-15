@@ -7,8 +7,6 @@ namespace project_take_2.Content.Enemies
 {
     public class Enemy : IEnemies
     {
-        // setting up variables for the enemy classes.
-
         #region variables 
 
         protected Rectangle positionAndSize;
@@ -32,6 +30,8 @@ namespace project_take_2.Content.Enemies
         protected SpriteEffects flip = SpriteEffects.None;
 
         #endregion
+
+        #region methodes
 
         // Drawing the sprite no need to touch this!
         public virtual void Draw(SpriteBatch _spriteBatch)
@@ -75,5 +75,6 @@ namespace project_take_2.Content.Enemies
         {
             // update in the class of the enemy.
         }
+        #endregion
     }
 }

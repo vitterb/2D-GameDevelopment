@@ -56,7 +56,7 @@ namespace project_take_2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             keyInput = new KeyInput();
 
-            hero = new Hero(10, 400, 100, 100);
+            hero = new Hero(10, 400, 200, 200);
             hero.LoadContent(Content);
             eagle = new Eagle(20, 20, 100, 100);
             eagle.LoadContent(Content);

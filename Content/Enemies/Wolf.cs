@@ -8,8 +8,11 @@ namespace project_take_2.Content.Enemies
 {
     class Wolf : Enemy
     {
+        #region variables
         public static Rectangle hitbox;
-       
+        #endregion
+
+        #region constructor
         public Wolf(int x, int y, int width, int height)
         {
             _width = width;
@@ -32,6 +35,10 @@ namespace project_take_2.Content.Enemies
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1667, frameworkWidth, frameworkHeight)));
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1667, frameworkWidth, frameworkHeight)));
         }
+
+        #endregion
+
+        #region methodes
         public override void Move(int deceleration, int speed)
         {
             positionAndSize.X += speed / deceleration;
@@ -47,5 +54,6 @@ namespace project_take_2.Content.Enemies
         {
             _texture = Content.Load<Texture2D>("Sprites/wolf2");
         }
+        #endregion
     }
 }
