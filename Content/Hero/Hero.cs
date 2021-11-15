@@ -187,18 +187,19 @@ namespace project_take_2.Content.Hero
         public void update(GameTime gameTime)
         {
             hitboxUpdate();
-            
+
+            positionAndSize.X += velocity.X;
             positionAndSize.Y += velocity.Y;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && live && hasJumped == false)
             {
                 flip = SpriteEffects.FlipHorizontally;
-                animation.Update(gameTime, 6);
+                animation.Update(gameTime, 10);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false)
             {
                 flip = SpriteEffects.None;
-                animation.Update(gameTime, 6);
+                animation.Update(gameTime, 10);
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live && hasJumped == false )
             {
@@ -211,9 +212,7 @@ namespace project_take_2.Content.Hero
 
             // source = Youtube User == Oyyou 
             if(hasJumped == true)
-            {
-                float i = 1;
-                velocity.Y += 0.005f * i ;
+            {                
                 animationJump.Update(gameTime, 6);
             }
             if (hasJumped == false)
