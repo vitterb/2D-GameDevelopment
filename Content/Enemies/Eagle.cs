@@ -9,10 +9,9 @@ namespace project_take_2.Content.Enemies
     class Eagle : Enemy
     {
         public static Rectangle hitbox;
-        private Texture2D eagleSprite;
+        
         public Eagle(int x, int y, int width, int height)
         {
-            _texture = eagleSprite;
             _width = width;
             _height = height;
             _x = x;
@@ -51,7 +50,7 @@ namespace project_take_2.Content.Enemies
 
         public void LoadContent(ContentManager Content)
         {
-            eagleSprite = Content.Load<Texture2D>("Sprites/Eagle");
+            _texture = Content.Load<Texture2D>("Sprites/Eagle");
         }
     }
 }

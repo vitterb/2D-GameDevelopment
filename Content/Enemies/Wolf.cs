@@ -9,17 +9,16 @@ namespace project_take_2.Content.Enemies
     class Wolf : Enemy
     {
         public static Rectangle hitbox;
-        private Texture2D wolfSprite;
+       
         public Wolf(int x, int y, int width, int height)
         {
-            _texture = wolfSprite;
             _width = width;
             _height = height;
             _x = x;
             _y = y;
             
             positionAndSize = new Rectangle(_x, _y, _width, _height);
-            hitbox = new Rectangle(0, 0, _texture.Width/2, _texture.Height/2);
+            hitbox = new Rectangle(0, 0, _width/2, _height/2);
 
             animation = new AnimationClass();
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 167, frameworkWidth, frameworkHeight)));
@@ -46,7 +45,7 @@ namespace project_take_2.Content.Enemies
         }
         public void LoadContent(ContentManager Content)
         {
-            wolfSprite = Content.Load<Texture2D>("Sprites/wolf2");
+            _texture = Content.Load<Texture2D>("Sprites/wolf2");
         }
     }
 }

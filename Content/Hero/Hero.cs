@@ -13,6 +13,7 @@ namespace project_take_2.Content.Hero
     public class Hero : IHero
     {
         #region variables 
+
         private Texture2D _texture;
         private Texture2D _textureIdle;
         private Texture2D _textureDie;
@@ -38,6 +39,7 @@ namespace project_take_2.Content.Hero
         private readonly int _x;
         private readonly int _y;
         private SpriteEffects flip = SpriteEffects.None;
+
         #endregion
         #region Constructor
         public Hero( int x, int y, int width, int height)
@@ -83,16 +85,16 @@ namespace project_take_2.Content.Hero
             animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 1168, frameworkwidth, frameworkHeight + 65)));
             animationJump.AddFrame(new AnimationFrame(new Rectangle(frameworkXb, 1168, frameworkwidth, frameworkHeight + 65)));
 
-            array[0] = new Rectangle(frameworkX, 50, frameworkwidth, frameworkHeight);
-            array[1] = new Rectangle(frameworkXb, 50, frameworkwidth, frameworkHeight);
-            array[2] = new Rectangle(frameworkX, 342, frameworkwidth, frameworkHeight);
-            array[3] = new Rectangle(frameworkXb, 342, frameworkwidth, frameworkHeight);
-            array[4] = new Rectangle(frameworkX, 634, frameworkwidth, frameworkHeight);
-            array[5] = new Rectangle(frameworkXb, 634, frameworkwidth, frameworkHeight);
-            array[6] = new Rectangle(frameworkX, 926, frameworkwidth, frameworkHeight);
-            array[7] = new Rectangle(frameworkXb, 926, frameworkwidth, frameworkHeight);
-            array[8] = new Rectangle(frameworkX, 1218, frameworkwidth, frameworkHeight);
-            array[9] = new Rectangle(frameworkXb, 1218, frameworkwidth, frameworkHeight);
+            array[0] = new Rectangle(frameworkX, 50, frameworkwidth+25, frameworkHeight+10);
+            array[1] = new Rectangle(frameworkXb, 50, frameworkwidth+25, frameworkHeight+10);
+            array[2] = new Rectangle(frameworkX, 342, frameworkwidth+25, frameworkHeight+10);
+            array[3] = new Rectangle(frameworkXb, 342, frameworkwidth+25, frameworkHeight+10);
+            array[4] = new Rectangle(frameworkX, 634, frameworkwidth+25, frameworkHeight+10);
+            array[5] = new Rectangle(frameworkXb, 634, frameworkwidth+25, frameworkHeight+10);
+            array[6] = new Rectangle(frameworkX, 926, frameworkwidth+25, frameworkHeight+10);
+            array[7] = new Rectangle(frameworkXb, 926, frameworkwidth+25, frameworkHeight+10);
+            array[8] = new Rectangle(frameworkX, 1218, frameworkwidth+25, frameworkHeight+10);
+            array[9] = new Rectangle(frameworkXb, 1218, frameworkwidth+25, frameworkHeight+10);
         }
         #endregion region
         #region Methodes
@@ -117,11 +119,11 @@ namespace project_take_2.Content.Hero
             {
                 JumpDraw(_spriteBatch);
             }
-            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down) && live)
+            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down) && live && hasJumped == false)
             {
                 IdleDraw(_spriteBatch);
             }
-            if (hitbox.Intersects(Bear.hitbox))
+            if (!live)
             {
                 DieDraw(_spriteBatch);
             }
@@ -185,7 +187,9 @@ namespace project_take_2.Content.Hero
         public void update(GameTime gameTime)
         {
             hitboxUpdate();
+            
             positionAndSize.Y += velocity.Y;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && live && hasJumped == false)
             {
                 flip = SpriteEffects.FlipHorizontally;
@@ -204,10 +208,12 @@ namespace project_take_2.Content.Hero
             {
                 live = false;
             }
+
+            // source = Youtube User == Oyyou 
             if(hasJumped == true)
             {
                 float i = 1;
-                velocity.Y += 0.005f * i;
+                velocity.Y += 0.005f * i ;
                 animationJump.Update(gameTime, 6);
             }
             if (hasJumped == false)

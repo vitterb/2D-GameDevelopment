@@ -11,12 +11,10 @@ namespace project_take_2.Content.Enemies
     {
         public static Rectangle hitbox;
         public static Bear bear;
-        private Texture2D bearSprite;
         public Bear(int x, int y, int width, int height)
         {
             // setting up the bear enemy
 
-            _texture = bearSprite;
             _width = width;
             _height = height;
             _x = x;
@@ -59,7 +57,7 @@ namespace project_take_2.Content.Enemies
 
         public void LoadContent(ContentManager Content)
         {
-            bearSprite = Content.Load<Texture2D>("Sprites/bear");
+            _texture = Content.Load<Texture2D>("Sprites/bear");
         }
     }
 

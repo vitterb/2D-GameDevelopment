@@ -8,15 +8,11 @@ namespace project_take_2.Content.Input
     {
         public void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Hero.live && Hero.Hero.hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)&& Hero.Hero.live && Hero.Hero.hasJumped == false || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Hero.live && Hero.Hero.hasJumped == false)
             {
-                Hero.Hero.positionAndSize.Y -= 50f;
-                Hero.Hero.velocity.Y = 10f;
+                Hero.Hero.positionAndSize.Y -= 250f;
+                Hero.Hero.velocity.Y = 5f;
                 Hero.Hero.hasJumped = true;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down)&& Hero.Hero.live)
-            {
-                Hero.Hero.positionAndSize.Y += 1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left) && Hero.Hero.live)
             {
