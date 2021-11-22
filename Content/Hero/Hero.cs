@@ -117,7 +117,7 @@ namespace project_take_2.Content.Hero
             {
                 MoveDraw(_spriteBatch);
             }
-            if (hasJumped == true)
+            if (hasJumped == true && live)
             {
                 JumpDraw(_spriteBatch);
             }
@@ -169,6 +169,7 @@ namespace project_take_2.Content.Hero
         }
         private void DieDraw(SpriteBatch _spriteBatch)
         {
+            // TODO naar update
             counter2++;
             counter++;
             if (counter2 > 10)
@@ -221,7 +222,7 @@ namespace project_take_2.Content.Hero
             {
                 velocity.Y = 0f;
             }
-            if (positionAndSize.Y + positionAndSize.Height >= 750)
+            if (positionAndSize.Y + positionAndSize.Height >= 850)
             {
                 hasJumped = false;
             }

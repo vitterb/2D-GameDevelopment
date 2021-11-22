@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using project_take_2.Content.Backgrounds;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
@@ -21,6 +22,8 @@ namespace project_take_2
         private Eagle eagle;
         private Bear bear;
         private Hero hero;
+
+        private BackgroundDarkMystery background1;
 
         private Texture2D testblock;
         public static  Rectangle testblockRec;
@@ -56,14 +59,17 @@ namespace project_take_2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             keyInput = new KeyInput();
 
-            hero = new Hero(10, 400, 200, 200);
+            hero = new Hero(10, 650, 200, 200);
             hero.LoadContent(Content);
-            eagle = new Eagle(20, 20, 100, 100);
+            eagle = new Eagle(20, 20, 150, 150);
             eagle.LoadContent(Content);
-            wolf = new Wolf(500, 700, 100, 100);
+            wolf = new Wolf(500, 710, 200, 200);
             wolf.LoadContent(Content);
-            bear = new Bear(900, 700,100,100);
-            bear.LoadContent(Content);
+            //bear = new Bear(900, 700,200,200);
+            //bear.LoadContent(Content);
+
+            background1 = new BackgroundDarkMystery();
+            background1.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -76,7 +82,7 @@ namespace project_take_2
             hero.update(gameTime);
             eagle.update(gameTime);
             wolf.update(gameTime);
-            bear.update(gameTime);
+            //bear.update(gameTime);
 
             keyInput.Update();
 
@@ -89,10 +95,17 @@ namespace project_take_2
 
             _spriteBatch.Begin();
 
+            background1.DrawSky(_spriteBatch);
+            background1.DrawBackground(_spriteBatch);
+            background1.DrawMiddle(_spriteBatch);
+            background1.DrawForeGround(_spriteBatch);
+    
             hero.Draw(_spriteBatch);
             eagle.Draw(_spriteBatch);
             wolf.Draw(_spriteBatch);
-            bear.Draw(_spriteBatch);
+            //bear.Draw(_spriteBatch);
+
+            background1.DrawGround(_spriteBatch);
 
             _spriteBatch.End();
 

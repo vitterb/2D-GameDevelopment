@@ -45,8 +45,8 @@ namespace project_take_2.Content.Enemies
         }
         public override void SetHitbox()
         {
-            hitbox.X = positionAndSize.X;
-            hitbox.Y = positionAndSize.Y;
+            hitbox.X = positionAndSize.X + widthOffset;
+            hitbox.Y = positionAndSize.Y + HeightOffset;
             hitbox.Width = positionAndSize.Width - widthOffset;
             hitbox.Height = positionAndSize.Height - HeightOffset;
         }
