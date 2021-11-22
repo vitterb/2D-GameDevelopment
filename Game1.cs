@@ -61,7 +61,7 @@ namespace project_take_2
 
             hero = new Hero(10, 650, 200, 200);
             hero.LoadContent(Content);
-            eagle = new Eagle(20, 20, 150, 150);
+            eagle = new Eagle(20, 400, 150, 150);
             eagle.LoadContent(Content);
             wolf = new Wolf(500, 710, 200, 200);
             wolf.LoadContent(Content);

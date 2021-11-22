@@ -194,12 +194,12 @@ namespace project_take_2.Content.Hero
             positionAndSize.X += velocity.X;
             positionAndSize.Y += velocity.Y;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) && live && hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) && live )
             {
                 flip = SpriteEffects.FlipHorizontally;
                 animation.Update(gameTime, 10);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live )
             {
                 flip = SpriteEffects.None;
                 animation.Update(gameTime, 10);
