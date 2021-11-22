@@ -10,8 +10,8 @@ namespace project_take_2.Content.Input
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up)&& Hero.Hero.live && Hero.Hero.hasJumped == false || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Hero.live && Hero.Hero.hasJumped == false)
             {
-                Hero.Hero.positionAndSize.Y -= 5f;
-                Hero.Hero.velocity.Y = -7.5f;
+                Hero.Hero.positionAndSize.Y -= 15f;
+                Hero.Hero.velocity.Y = -7.75f;
                 Hero.Hero.hasJumped = true;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left) && Hero.Hero.live)
@@ -32,7 +32,7 @@ namespace project_take_2.Content.Input
             if (Hero.Hero.hasJumped)
             {
                 float i = 1;
-                Hero.Hero.velocity.Y += 0.105f * i;
+                Hero.Hero.velocity.Y += 0.15f * i;
             }
         }
     }

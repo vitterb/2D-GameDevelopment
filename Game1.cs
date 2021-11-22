@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Backgrounds;
 using project_take_2.Content.Enemies;
+using project_take_2.Content.GameState;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
 using project_take_2.Content.levels;
@@ -22,6 +23,8 @@ namespace project_take_2
         private Eagle eagle;
         private Bear bear;
         private Hero hero;
+
+        private splashscreen splash;
 
         private BackgroundDarkMystery background1;
 
@@ -70,6 +73,9 @@ namespace project_take_2
 
             background1 = new BackgroundDarkMystery();
             background1.LoadContent(Content);
+
+            splash = new splashscreen();
+            splash.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -78,12 +84,17 @@ namespace project_take_2
             {
                 Exit();
             }
-
-            hero.update(gameTime);
-            eagle.update(gameTime);
-            wolf.update(gameTime);
-            //bear.update(gameTime);
-
+            if (splash.Splash)
+            {
+                splash.update();
+            }
+            else
+            {
+                hero.update(gameTime);
+                eagle.update(gameTime);
+                wolf.update(gameTime);
+                //bear.update(gameTime);
+            }
             keyInput.Update();
 
             base.Update(gameTime);
@@ -92,23 +103,28 @@ namespace project_take_2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-
             _spriteBatch.Begin();
+            if (splash.Splash)
+            {
+                splash.Draw(_spriteBatch);
+            }
+            else
+            {
+               
 
-            background1.DrawSky(_spriteBatch);
-            background1.DrawBackground(_spriteBatch);
-            background1.DrawMiddle(_spriteBatch);
-            background1.DrawForeGround(_spriteBatch);
-    
-            hero.Draw(_spriteBatch);
-            eagle.Draw(_spriteBatch);
-            wolf.Draw(_spriteBatch);
-            //bear.Draw(_spriteBatch);
+                background1.DrawSky(_spriteBatch);
+                background1.DrawBackground(_spriteBatch);
+                background1.DrawMiddle(_spriteBatch);
+                background1.DrawForeGround(_spriteBatch);
 
-            background1.DrawGround(_spriteBatch);
+                hero.Draw(_spriteBatch);
+                eagle.Draw(_spriteBatch);
+                wolf.Draw(_spriteBatch);
+                //bear.Draw(_spriteBatch);
 
+                background1.DrawGround(_spriteBatch);
+            }
             _spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
