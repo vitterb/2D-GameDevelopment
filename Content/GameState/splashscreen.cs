@@ -19,9 +19,7 @@ namespace project_take_2.Content.GameState
             timer = 0;
             splash = true;
         }
-
         public bool Splash { get { return splash; }}
-
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw
@@ -31,16 +29,10 @@ namespace project_take_2.Content.GameState
                     Color.White
                 );
         }
-        
-        public splashscreen()
-        {
-            
-        }
-        
-        public void update()
+        public void update(GameTime gameTime)
         {
             timer++;
-            if (timer == 500)
+            if (timer == 250)
             {
                 splash = false;
             }

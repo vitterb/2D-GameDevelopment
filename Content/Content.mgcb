@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:BackGrounds/BG.png
 
+#begin BackGrounds/Cartoon_Forest_BG_01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BackGrounds/Cartoon_Forest_BG_01.png
+
 #begin BackGrounds/Foreground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,6 +96,37 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:box.png
+
+#begin buttons/bag.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:buttons/bag.png
+
+#begin buttons/map.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:buttons/map.png
+
+#begin Font/game.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/game.spritefont
 
 #begin Gamescreens/SplashTemp.png
 /importer:TextureImporter

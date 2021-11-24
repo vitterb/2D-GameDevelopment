@@ -10,7 +10,7 @@ using project_take_2.Content.interfaces;
 
 namespace project_take_2.Content.Hero
 {
-    public class Hero : IHero
+    public class Character : IHero
     {
         #region variables 
 
@@ -43,7 +43,7 @@ namespace project_take_2.Content.Hero
         #endregion
 
         #region Constructor
-        public Hero( int x, int y, int width, int height)
+        public Character( int x, int y, int width, int height)
         {   
             _width = width;
             _height = height;

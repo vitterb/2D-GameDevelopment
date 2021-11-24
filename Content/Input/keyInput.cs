@@ -8,31 +8,31 @@ namespace project_take_2.Content.Input
     {
         public void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)&& Hero.Hero.live && Hero.Hero.hasJumped == false || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Hero.live && Hero.Hero.hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)&& Hero.Character.live && Hero.Character.hasJumped == false || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Character.live && Hero.Character.hasJumped == false)
             {
-                Hero.Hero.positionAndSize.Y -= 15f;
-                Hero.Hero.velocity.Y = -7.75f;
-                Hero.Hero.hasJumped = true;
+                Hero.Character.positionAndSize.Y -= 15f;
+                Hero.Character.velocity.Y = -7.75f;
+                Hero.Character.hasJumped = true;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left) && Hero.Hero.live)
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left) && Hero.Character.live)
             {
-                Hero.Hero.velocity.X -= 0.10f;
+                Hero.Character.velocity.X -= 0.10f;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right) && Hero.Hero.live)
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right) && Hero.Character.live)
             {
-                Hero.Hero.velocity.X += 0.10f;
+                Hero.Character.velocity.X += 0.10f;
             }
 
             // source = Youtube User == Oyyou 
 
             else if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right)) 
             {
-                Hero.Hero.velocity.X = 0f;
+                Hero.Character.velocity.X = 0f;
             };
-            if (Hero.Hero.hasJumped)
+            if (Hero.Character.hasJumped)
             {
                 float i = 1;
-                Hero.Hero.velocity.Y += 0.15f * i;
+                Hero.Character.velocity.Y += 0.15f * i;
             }
         }
     }

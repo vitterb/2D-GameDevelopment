@@ -5,7 +5,7 @@ using project_take_2.Content.interfaces;
 
 namespace project_take_2.Content.Enemies
 {
-    public class Enemy : IEnemies
+    public abstract class Enemy : IEnemies
     {
         #region variables 
 
