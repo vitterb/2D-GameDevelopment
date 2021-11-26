@@ -39,6 +39,9 @@ namespace project_take_2.Content.Hero
         private readonly int _x;
         private readonly int _y;
         private SpriteEffects flip = SpriteEffects.None;
+        private SpriteFont font;
+        private Vector2 middle;
+        private string gameOver = "GAME OVER";
 
         #endregion
 
@@ -106,6 +109,8 @@ namespace project_take_2.Content.Hero
             _textureIdle = Content.Load<Texture2D>("Sprites/heroPosibilityIdle");
             _textureDie = Content.Load<Texture2D>("Sprites/heroPosibilityDie");
             _textureJump = Content.Load<Texture2D>("Sprites/heroPosibilityJump");
+            font = Content.Load<SpriteFont>("Font/gameOver");
+            middle = new Vector2((Game1._graphics.PreferredBackBufferWidth - (gameOver.Length*128))/2 , (Game1._graphics.PreferredBackBufferHeight - 128) /2);
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -185,6 +190,7 @@ namespace project_take_2.Content.Hero
                 new Vector2(0, 0),
                 flip,
                 0);
+            _spriteBatch.DrawString(font, gameOver, middle, Color.DarkRed);
         }
 
         public void update(GameTime gameTime)
