@@ -7,7 +7,6 @@ namespace project_take_2.Content.Animation
 {
     public class HeroAnimation
     {
-        #region Variables
         private readonly int frameworkwidth = 250;
         private readonly int frameworkHeight = 200;
         private readonly int frameworkX = 300;
@@ -16,16 +15,10 @@ namespace project_take_2.Content.Animation
         private readonly AnimationClass idleAnimation;
         private readonly AnimationClass jumpAnimation;
         private readonly Rectangle[] death = new Rectangle[10];
-        #endregion
-
-        #region Proporties
         public AnimationClass Walk { get { return walkAnimation; } }
         public AnimationClass Idle { get { return idleAnimation; } }
         public AnimationClass Jump { get { return jumpAnimation; } }
         public Rectangle[] Death { get { return death; } }
-        #endregion
-
-        #region Constructor
         public HeroAnimation()
         {
             #region Walk
@@ -80,9 +73,8 @@ namespace project_take_2.Content.Animation
             death[6] = new Rectangle(frameworkX, 926, frameworkwidth + 25, frameworkHeight + 10);
             death[7] = new Rectangle(frameworkXb, 926, frameworkwidth + 25, frameworkHeight + 10);
             death[8] = new Rectangle(frameworkX, 1218, frameworkwidth + 25, frameworkHeight + 10);
-            death[9] = new Rectangle(frameworkXb, 1218, frameworkwidth + 25, frameworkHeight + 10);
+            death[9] = new Rectangle(frameworkXb, 1218, frameworkwidth + 25, frameworkHeight + 10); 
             #endregion
-        } 
-        #endregion
+        }
     }
 }

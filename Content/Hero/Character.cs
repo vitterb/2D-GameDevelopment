@@ -144,6 +144,7 @@ namespace project_take_2.Content.Hero
                 0);
             _spriteBatch.DrawString(font, gameOver, middle, Color.DarkRed);
         }
+
         public void update(GameTime gameTime)
         {
             hitboxUpdate();
