@@ -31,8 +31,9 @@ namespace project_take_2.Content.GameState
 
         #endregion
         #region propo
-        public bool Startmenu { get { return start; } }
-        public bool Start1 { get { return start1; } }
+        public bool Startmenu { get { return start; } set { start = value; } }
+        public  bool Start1 {get { return start1; } set { start1 = value; }}
+
         public bool Start2 { get { return start2; } }
         #endregion
         #region methodes
@@ -55,8 +56,8 @@ namespace project_take_2.Content.GameState
             _spritebatch.Draw(StartscreenTexture,StartScreenVector,Color.White);
             _spritebatch.Draw(buttonStartLevel1,positionButton1, color1);
             _spritebatch.Draw(buttonStartLevel2, positionButton2, color2);
-            _spritebatch.DrawString(font, lv1, lvl1, Color.DarkGoldenrod);
-            _spritebatch.DrawString(font, lv2, lvl2, Color.DarkGoldenrod);
+            _spritebatch.DrawString(font, lv1, lvl1, Color.Azure);
+            _spritebatch.DrawString(font, lv2, lvl2, Color.Azure);
         }
         public void Update(GameTime gameTime) 
         {
@@ -74,6 +75,11 @@ namespace project_take_2.Content.GameState
                 }
             }
             else { color1 = Color.White; }
+            if (mouseRect.Intersects(positionButton2))
+            {
+                color2 = Color.Gold;
+            }
+            else { color2 = Color.White; }
         }
         #endregion
     }

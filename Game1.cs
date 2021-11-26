@@ -15,20 +15,6 @@ namespace project_take_2
 
         private const int ScreenW = 1440, ScreenH = 900;
 
-        //private Wolf wolf;
-        //private Eagle eagle;
-        //private Bear bear;
-        //private Character hero;
-
-        //private splashscreen splash;
-
-        //private BackgroundDarkMystery background1;
-
-        //private Texture2D testblock;
-        //public static  Rectangle testblockRec;
-
-        //public static Color testcolor = Color.Azure;
-
         private GameState game;
 
         #endregion 

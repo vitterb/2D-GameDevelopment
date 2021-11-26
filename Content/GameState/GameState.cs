@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using project_take_2.Content.Hero;
 using project_take_2.Content.levels;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace project_take_2.Content.GameState
         private splashscreen splash;
         private Start start;
         private level1 lv1;
+        private int counter = 1;
 
         public GameState()
         {
@@ -37,8 +39,17 @@ namespace project_take_2.Content.GameState
                 {
                     lv1.Draw(_spriteBatch);
                 }
+                if (!Character.live)
+                {
+                    if (counter == 1000)
+                    {
+                        start.Start1 = false;
+                        start.Startmenu = true;
+                        Character.live = true;
+                        Character.positionAndSize = new Rectangle(10, 650, 200, 200);
+                    }
+                }
             }
-            
         }
         public void Update(GameTime gameTime)
         {
@@ -53,6 +64,10 @@ namespace project_take_2.Content.GameState
             if (start.Start1)
             {
                 lv1.update(gameTime);
+            }
+            if (!Character.live)
+            {
+                counter++;
             }
         }
         public void LoadContent(ContentManager content)
