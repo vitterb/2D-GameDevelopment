@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using project_take_2.Content.Hero;
 using project_take_2.Content.levels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace project_take_2.Content.GameState
 {
@@ -15,15 +13,11 @@ namespace project_take_2.Content.GameState
         private Start start;
         private level1 lv1;
         private int counter = 1;
+        protected ContentManager content;
+        public GameState() { }
+        public void Initialize() { }
 
-        public GameState()
-        {
-            splash = new splashscreen();
-            start = new Start();
-            lv1 = new level1();
-        }
-
-        public void Draw(SpriteBatch _spriteBatch)
+        public virtual void Draw(SpriteBatch _spriteBatch)
         {
             if (splash.Splash)
             {
@@ -51,7 +45,7 @@ namespace project_take_2.Content.GameState
                 }
             }
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (splash.Splash)
             {
@@ -70,11 +64,13 @@ namespace project_take_2.Content.GameState
                 counter++;
             }
         }
-        public void LoadContent(ContentManager content)
+        public virtual void LoadContent(ContentManager Content)
         {
-            splash.LoadContent(content);
-            start.LoadContent(content);
-            lv1.LoadContent(content);
+            content = new ContentManager(Content.ServiceProvider, "Content");
         }
+        public virtual void UnloadContent()
+        {
+            content.Unload();
+        } 
     }
 }
