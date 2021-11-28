@@ -28,10 +28,9 @@ namespace project_take_2
 
         protected override void Initialize()
         {
-            ScreenManager.Instance.Initialize();
-            ScreenManager.Instance.Dimensions = new Vector2(ScreenW, ScreenH);
-            _graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            _graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+            
+            _graphics.PreferredBackBufferWidth = ScreenW;
+            _graphics.PreferredBackBufferHeight = ScreenH;
             _graphics.ApplyChanges();
 
             Window.AllowUserResizing = false;

@@ -12,22 +12,21 @@ namespace project_take_2.Content.Enemies
         protected Rectangle positionAndSize;
         protected Texture2D _texture;
         protected AnimationClass animation;
-        protected int 
-            _width, 
-            _height, 
-            _x,
-            _y, 
-            _speed = 1, 
-            _slowdown = 1, 
-            widthOffset = 10, 
-            HeightOffset = 50, 
-            frameworkX = 250, 
-            frameworkY, 
-            frameworkWidth = 260, 
-            frameworkHeight = 225,
-            frameworkXb = 1042,
-            offsetX,
-            offsetY;
+        protected int _width;
+        protected int _height;
+        protected int _x;
+        protected int _y;
+        protected int _speed = 1;
+        protected int _slowdown = 1;
+        protected int widthOffset = 10;
+        protected int HeightOffset = 50;
+        protected int frameworkX = 250;
+        protected int frameworkY;
+        protected int frameworkWidth = 260;
+        protected int frameworkHeight = 225;
+        protected int frameworkXb = 1042;
+        protected int offsetX;
+        protected int offsetY;
         protected SpriteEffects flip = SpriteEffects.None;
 
         #endregion

@@ -14,27 +14,23 @@ namespace project_take_2.Content.Hero
     {
         #region variables 
 
-        private Texture2D 
-            _texture, 
-            _textureIdle,
-            _textureDie, 
-            _textureJump;
+        private Texture2D _texture;
+        private Texture2D _textureIdle;
+        private Texture2D _textureDie;
+        private Texture2D _textureJump;
         private HeroAnimation _heroAnimation;
         private RectangleF hitbox;
-        public static RectangleF 
-            positionAndSize, 
-            velocity;
-        public static bool 
-            live = true,
-            hasJumped = false;
-        private int 
-            counter = 0, 
-            counter2 = 1;
-        private readonly int 
-            OffsetX = 25, _width, 
-            _height, 
-            _x , 
-            _y;
+        public static RectangleF positionAndSize;
+        public static RectangleF velocity;
+        public static bool live = true;
+        public static bool hasJumped = false;
+        private int counter = 0;
+        private int counter2 = 1;
+        private readonly int OffsetX = 25;
+        private readonly int _width;
+        private readonly int _height;
+        private readonly int _x;
+        private readonly int _y;
         private SpriteEffects flip = SpriteEffects.None;
         private SpriteFont font;
         private Vector2 middle;
