@@ -7,18 +7,25 @@ namespace project_take_2.Content.Animation
 {
     public class HeroAnimation
     {
-        private readonly int frameworkwidth = 250;
-        private readonly int frameworkHeight = 200;
-        private readonly int frameworkX = 300;
-        private readonly int frameworkXb = 1133;
-        private readonly AnimationClass walkAnimation;
-        private readonly AnimationClass idleAnimation;
-        private readonly AnimationClass jumpAnimation;
-        private readonly Rectangle[] death = new Rectangle[10];
+        #region Variables
+        private readonly int 
+            frameworkwidth = 250,
+            frameworkHeight = 200,
+            frameworkX = 300,
+            frameworkXb = 1133;
+        private readonly AnimationClass 
+            walkAnimation,
+            idleAnimation,
+            jumpAnimation;
+        private readonly Rectangle[] 
+            death = new Rectangle[10];
+        #endregion
+        #region Properties
         public AnimationClass Walk { get { return walkAnimation; } }
         public AnimationClass Idle { get { return idleAnimation; } }
         public AnimationClass Jump { get { return jumpAnimation; } }
-        public Rectangle[] Death { get { return death; } }
+        public Rectangle[] Death { get { return death; } } 
+        #endregion
         public HeroAnimation()
         {
             #region Walk

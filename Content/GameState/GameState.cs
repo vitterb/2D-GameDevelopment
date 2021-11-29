@@ -3,9 +3,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using project_take_2.Content.Hero;
 using project_take_2.Content.levels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace project_take_2.Content.GameState
 {
