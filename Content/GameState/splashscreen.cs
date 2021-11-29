@@ -13,13 +13,24 @@ namespace project_take_2.Content.GameState
         private Vector2 position;
         private double timer;
         private bool splash;
-        public void LoadContent(ContentManager content)
+        private ContentManager _content;
+        public bool Splash { get { return splash; } }
+
+        public splashscreen()
         {
-            splashscreenTexture = content.Load<Texture2D>("Gamescreens/SplashTemp");
             timer = 0;
             splash = true;
+            position = new Vector2(0f);
         }
-        public bool Splash { get { return splash; }}
+        public void LoadContent(ContentManager content)
+        {
+            _content = new ContentManager(content.ServiceProvider, "Content");
+            splashscreenTexture = _content.Load<Texture2D>("Gamescreens/SplashTemp");
+        }
+        public void UnloadContent()
+        {
+            _content.Unload();
+        }
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw

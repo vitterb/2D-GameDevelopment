@@ -28,6 +28,7 @@ namespace project_take_2.Content.GameState
             }
             else if (!splash.Splash)
             {
+                splash.UnloadContent();
                 if (start.Startmenu)
                 {
                     start.Draw(_spriteBatch);
