@@ -33,12 +33,13 @@ namespace project_take_2.Content.GameState
         private Color 
             color1,
             color2;
+        private ContentManager _content;
 
         #endregion
         #region properties
-        public bool Startmenu { get { return menu; } set { menu = value; } }
-        public  bool Start1 {get { return button1; } set { button1 = value; }}
-        public bool Start2 { get { return button2; } }
+        public bool Menu { get { return menu; } set { menu = value; } }
+        public  bool Button1 {get { return button1; } set { button1 = value; }}
+        public bool Button2 { get { return button2; } }
         #endregion
         #region Constructor
         public Start()
@@ -55,10 +56,11 @@ namespace project_take_2.Content.GameState
         #region methodes
         public void LoadContent(ContentManager content)
         {
-            StartscreenTexture = content.Load<Texture2D>("BackGrounds/Cartoon_Forest_BG_01");
-            buttonStartLevel1 = content.Load<Texture2D>("buttons/map");
-            buttonStartLevel2 = content.Load<Texture2D>("buttons/bag");
-            font = content.Load<SpriteFont>("Font/game");
+            _content = new ContentManager(content.ServiceProvider, "Content");
+            StartscreenTexture = _content.Load<Texture2D>("BackGrounds/Cartoon_Forest_BG_01");
+            buttonStartLevel1 = _content.Load<Texture2D>("buttons/map");
+            buttonStartLevel2 = _content.Load<Texture2D>("buttons/bag");
+            font = _content.Load<SpriteFont>("Font/game");
         }
         public void Draw(SpriteBatch _spritebatch) 
         {

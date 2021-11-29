@@ -31,7 +31,7 @@ namespace project_take_2.Content.Hero
         private int
             counter = 0,
             counter2 = 1;
-        private readonly int 
+        private int 
             OffsetX = 25,
             _width,
             _height,
@@ -140,7 +140,6 @@ namespace project_take_2.Content.Hero
                 0);
             _spriteBatch.DrawString(font, gameOver, middle, Color.DarkRed);
         }
-
         public void update(GameTime gameTime)
         {
             hitboxUpdate();

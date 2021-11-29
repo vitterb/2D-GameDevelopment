@@ -8,18 +8,22 @@ namespace project_take_2.Content.GameState
 {
     public class GameState
     {
-        private splashscreen splash;
-        private Start start;
-        private level1 lv1;
+        #region Variables
+        private readonly splashscreen splash;
+        private readonly Start start;
+        private readonly Level1 lv1;
         private int counter = 1;
-
+        private ContentManager _content;
+        #endregion
+        #region Constructor
         public GameState()
         {
             splash = new splashscreen();
             start = new Start();
-            lv1 = new level1();
+            lv1 = new Level1();
         }
-
+        #endregion
+        #region Methodes
         public void Draw(SpriteBatch _spriteBatch)
         {
             if (splash.Splash)
@@ -28,51 +32,52 @@ namespace project_take_2.Content.GameState
             }
             else if (!splash.Splash)
             {
-                splash.UnloadContent();
-                if (start.Startmenu)
+                if (start.Menu)
                 {
                     start.Draw(_spriteBatch);
                 }
-                if (start.Start1)
+                else if (lv1.LevelActive)
                 {
                     lv1.Draw(_spriteBatch);
-                }
-                if (!Character.live)
-                {
-                    if (counter == 1000)
-                    {
-                        start.Start1 = false;
-                        start.Startmenu = true;
-                        Character.live = true;
-                        Character.positionAndSize = new Rectangle(10, 650, 200, 200);
-                    }
                 }
             }
         }
         public void Update(GameTime gameTime)
         {
             if (splash.Splash)
-            {
                 splash.update(gameTime);
-            }
-            if (start.Startmenu)
+            else
+                splash.UnloadContent();
+            if (start.Menu)
             {
                 start.Update(gameTime);
             }
-            if (start.Start1)
+            if (start.Button1)
+            {
+                lv1.LevelActive = true;
+            }
+            if (lv1.LevelActive)
             {
                 lv1.update(gameTime);
             }
             if (!Character.live)
             {
                 counter++;
+                if (counter == 750)
+                {
+                    start.Menu = true;
+                    lv1.LevelActive = false;
+                    lv1.ResetLevel();
+                }
             }
         }
         public void LoadContent(ContentManager content)
         {
-            splash.LoadContent(content);
+            _content = new ContentManager(content.ServiceProvider, "Content");
+            splash.LoadContent(_content);
             start.LoadContent(content);
             lv1.LoadContent(content);
-        }
+        } 
+        #endregion
     }
 }
