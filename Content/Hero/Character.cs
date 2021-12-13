@@ -6,13 +6,15 @@ using MonoGame.Extended;
 using project_take_2.Content.Animation;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.interfaces;
-
+using static project_take_2.Content.Hero.CharacterState;
 
 namespace project_take_2.Content.Hero
 {
     public class Character : IHero
     {
         #region variables 
+        private HeroState _state;
+        private HeroState currentState;
         private Texture2D 
             _texture,
             _textureIdle,
@@ -27,6 +29,7 @@ namespace project_take_2.Content.Hero
             velocity;
         public static bool 
             live = true,
+            hasAttacked,
             hasJumped = false;
         private int
             counter = 0,
@@ -70,78 +73,62 @@ namespace project_take_2.Content.Hero
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)&& live && hasJumped == false)
+            switch (currentState)
             {
-                MoveDraw(_spriteBatch);
+                case HeroState.idle:
+                    _spriteBatch.Draw(
+                        _textureIdle,
+                        (Rectangle)positionAndSize,
+                        _heroAnimation.Idle.currentFrame.Source,
+                        Color.White,
+                        0,
+                        new Vector2(0, 0),
+                        flip,
+                        0);
+                    break;
+                case HeroState.walk:
+                    _spriteBatch.Draw(
+                        _texture,
+                        (Rectangle)positionAndSize,
+                        _heroAnimation.Walk.currentFrame.Source,
+                        Color.White,
+                        0,
+                        new Vector2(0, 0),
+                        flip,
+                        0);
+                    break;
+                case HeroState.dead:
+                    _spriteBatch.Draw(
+                        _textureDie,
+                        (Rectangle)positionAndSize,
+                        _heroAnimation.Death[counter],
+                        Color.White,
+                        0,
+                        new Vector2(0, 0),
+                        flip,
+                        0);
+                    _spriteBatch.DrawString(font, gameOver, middle, Color.DarkRed);
+                    break;
+                case HeroState.jump:
+                    _spriteBatch.Draw(
+                        _textureJump,
+                        (Rectangle)positionAndSize,
+                        _heroAnimation.Jump.currentFrame.Source,
+                        Color.White,
+                        0,
+                        new Vector2(0, 0),
+                        flip,
+                        0);
+                    break;
+                case HeroState.attack:
+                    break;
+                default:
+                    break;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && live && hasJumped == false )
-            {
-                MoveDraw(_spriteBatch);
-            }
-            if (hasJumped == true && live)
-            {
-                JumpDraw(_spriteBatch);
-            }
-            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down) && live && hasJumped == false)
-            {
-                IdleDraw(_spriteBatch);
-            }
-            if (!live)
-            {
-                DieDraw(_spriteBatch);
-            }
-        }
-        private void MoveDraw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Draw(
-                _texture,
-                (Rectangle)positionAndSize,
-                _heroAnimation.Walk.currentFrame.Source,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                flip,
-                0);
-        }
-        private void JumpDraw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Draw(
-                _textureJump,
-                (Rectangle)positionAndSize,
-                _heroAnimation.Jump.currentFrame.Source,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                flip,
-                0);
-        }
-        private void IdleDraw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Draw(
-                _textureIdle,
-                (Rectangle)positionAndSize,
-                _heroAnimation.Idle.currentFrame.Source,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                flip,
-                0);
-        }
-        private void DieDraw(SpriteBatch _spriteBatch)
-        {            
-            _spriteBatch.Draw(
-                _textureDie,
-                (Rectangle)positionAndSize,
-                _heroAnimation.Death[counter],
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                flip,
-                0);
-            _spriteBatch.DrawString(font, gameOver, middle, Color.DarkRed);
         }
         public void update(GameTime gameTime)
         {
+            currentState = SetState(_state);
             hitboxUpdate();
             counter2++;
             counter++;
@@ -166,9 +153,9 @@ namespace project_take_2.Content.Hero
             if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||!live)
                 live = false;
             // source = Youtube User == Oyyou 
-            if(hasJumped == true)
+            if(hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);
-            if (hasJumped == false)
+            if (!hasJumped)
                 velocity.Y = 0f;
             if (positionAndSize.Y + positionAndSize.Height >= 850)
                 hasJumped = false;
