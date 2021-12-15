@@ -50,6 +50,7 @@ namespace project_take_2.Content.Hero
         private string 
             gameOver = "GAME OVER";
         #endregion
+
         #region Constructor
         public Character( int x, int y, int width, int height)
         {   
@@ -158,8 +159,6 @@ namespace project_take_2.Content.Hero
                 _heroAnimation.Jump.Update(gameTime, 6);
             if (!hasJumped)
                 velocity.Y = 0f;
-            if (positionAndSize.Y + positionAndSize.Height >= 850)
-                hasJumped = false;
             }
         private void hitboxUpdate()
         {

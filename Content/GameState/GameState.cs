@@ -15,10 +15,11 @@ namespace project_take_2.Content.GameState
         private readonly Level2 lv2;
         private int counter = 1;
         private ContentManager _content;
+
         #endregion
         #region Constructor
         public GameState()
-        {
+        { 
             splash = new splashscreen();
             start = new Start();
             lv1 = new Level1();

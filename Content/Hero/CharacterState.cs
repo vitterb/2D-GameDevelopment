@@ -8,6 +8,8 @@ namespace project_take_2.Content.Hero
         #region Variables
         public enum HeroState { idle, walk, dead, jump, attack}
         private HeroState state;
+        #endregion
+        #region proporties
         public HeroState State { get { return state; } set { state = value; } }
         #endregion
 

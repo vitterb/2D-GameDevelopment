@@ -64,11 +64,13 @@ namespace project_take_2.Content.GameState
         }
         public void Draw(SpriteBatch _spritebatch) 
         {
+            _spritebatch.Begin();
             _spritebatch.Draw(StartscreenTexture,StartScreenVector,Color.White);
             _spritebatch.Draw(buttonStartLevel1,positionButton1, color1);
             _spritebatch.Draw(buttonStartLevel2, positionButton2, color2);
             _spritebatch.DrawString(font, lv1, lvl1, Color.Azure);
             _spritebatch.DrawString(font, lv2, lvl2, Color.Azure);
+            _spritebatch.End();
         }
         public void Update(GameTime gameTime) 
         {
