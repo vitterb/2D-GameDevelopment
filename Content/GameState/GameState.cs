@@ -12,6 +12,7 @@ namespace project_take_2.Content.GameState
         private readonly splashscreen splash;
         private readonly Start start;
         private readonly Level1 lv1;
+        private readonly Level2 lv2;
         private int counter = 1;
         private ContentManager _content;
         #endregion
@@ -21,6 +22,7 @@ namespace project_take_2.Content.GameState
             splash = new splashscreen();
             start = new Start();
             lv1 = new Level1();
+            lv2 = new Level2();
         }
         #endregion
         #region Methodes
@@ -63,7 +65,7 @@ namespace project_take_2.Content.GameState
             if (!Character.live)
             {
                 counter++;
-                if (counter == 750)
+                if (counter == 500)
                 {
                     start.Menu = true;
                     lv1.LevelActive = false;

@@ -39,7 +39,7 @@ namespace project_take_2.Content.GameState
         #region properties
         public bool Menu { get { return menu; } set { menu = value; } }
         public  bool Button1 {get { return button1; } set { button1 = value; }}
-        public bool Button2 { get { return button2; } }
+        public bool Button2 { get { return button2; } set { button2 = value; }}
         #endregion
         #region Constructor
         public Start()
@@ -85,10 +85,17 @@ namespace project_take_2.Content.GameState
                 }
             }
             else 
-                color1 = Color.White; 
+                color1 = Color.White;
             if (mouseRect.Intersects(positionButton2))
+            {
                 color2 = Color.Gold;
-            else 
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    menu = false;
+                    button2 = true;
+                }
+            }
+            else
                 color2 = Color.White; 
         }
         #endregion

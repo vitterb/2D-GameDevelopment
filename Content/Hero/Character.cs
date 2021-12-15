@@ -6,6 +6,7 @@ using MonoGame.Extended;
 using project_take_2.Content.Animation;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.interfaces;
+using static project_take_2.Content.levels.RectangleHelper;
 using static project_take_2.Content.Hero.CharacterState;
 
 namespace project_take_2.Content.Hero
@@ -22,7 +23,7 @@ namespace project_take_2.Content.Hero
             _textureJump;
         private HeroAnimation 
             _heroAnimation;
-        private RectangleF 
+        private RectangleF
             hitbox;
         public static RectangleF 
             positionAndSize,
@@ -166,6 +167,30 @@ namespace project_take_2.Content.Hero
             hitbox.Y = positionAndSize.Y;
             hitbox.Width = positionAndSize.Width - OffsetX ;
             hitbox.Height = positionAndSize.Height ;
+        }
+        public void TerrainCollision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+            if (((Rectangle)hitbox).TouchTopOf(newRectangle)){
+                hitbox.Y = newRectangle.Y- hitbox.Height;
+                velocity.Y = 0f;
+                hasJumped = false;
+            }
+            if (((Rectangle)hitbox).TouchLeftOf(newRectangle))
+            {
+                positionAndSize.X = newRectangle.X - hitbox.Width - 2 ;
+            }
+            if (((Rectangle)hitbox).TouchRightOf(newRectangle))
+            {
+                positionAndSize.X = newRectangle.X + newRectangle.Width + 2 ;
+            }
+            if (((Rectangle)hitbox).TouchBottomOf(newRectangle))
+            {
+                velocity.Y = 1f;
+            }
+            if (positionAndSize.X < 0) positionAndSize.X = 0;
+            if (positionAndSize.X > xOffset - hitbox.Width) positionAndSize.X = xOffset - hitbox.Width;
+            if (hitbox.Y < 0) velocity.Y = 1f;
+            if (positionAndSize.Y > yOffset - hitbox.Height) positionAndSize.Y = yOffset - hitbox.Height;
         }
         #endregion
     }

@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.interfaces;
+using Microsoft.Xna.Framework;
 
 
 namespace project_take_2.Content.Input
 {
     public class KeyInput : IInput
     {
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up)&& Hero.Character.live && Hero.Character.hasJumped == false || Keyboard.GetState().IsKeyDown(Keys.Space) && Hero.Character.live && Hero.Character.hasJumped == false)
             {
@@ -16,11 +17,11 @@ namespace project_take_2.Content.Input
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left) && Hero.Character.live)
             {
-                Hero.Character.velocity.X -= 0.10f;
+                Hero.Character.velocity.X -= (float)gameTime.ElapsedGameTime.TotalMilliseconds / 350;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Right) && Hero.Character.live)
             {
-                Hero.Character.velocity.X += 0.10f;
+                Hero.Character.velocity.X += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 350;
             }
 
             // source = Youtube User == Oyyou 
