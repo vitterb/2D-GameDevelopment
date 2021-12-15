@@ -27,6 +27,10 @@ namespace project_take_2.Content.Hero
             {
                 state = HeroState.jump;
             }
+            if (Character.velocity.Y != 0 )
+            {
+                state = HeroState.jump;
+            }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down) && Character.live && !Character.hasJumped)
             {
                 state = HeroState.idle;

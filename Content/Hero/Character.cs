@@ -158,8 +158,9 @@ namespace project_take_2.Content.Hero
             if(hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);
             if (!hasJumped)
-                velocity.Y = 0f;
+                velocity.Y = 5f;
             }
+            
         private void hitboxUpdate()
         {
             hitbox.X = positionAndSize.X + OffsetX;

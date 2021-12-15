@@ -20,7 +20,7 @@ namespace project_take_2.Content.Input
         #region methodes
         public void Follow(RectangleF rectangleF)
         {
-            var offSet = Matrix.CreateTranslation(Game1.screenW / 2, Game1.screenH / 2, 0);
+            var offSet = Matrix.CreateTranslation(Game1.screenW / 2, Game1.screenH / 1.5f, 0);
 
             var position = Matrix.CreateTranslation(-rectangleF.X - (rectangleF.Width / 2), -rectangleF.Y - (rectangleF.Height / 2), 0);
 
