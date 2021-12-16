@@ -23,9 +23,8 @@ namespace project_take_2.Content.Hero
             _textureJump;
         private HeroAnimation 
             _heroAnimation;
-        private RectangleF
-            hitbox;
-        public static RectangleF 
+        public static RectangleF
+            hitbox,
             positionAndSize,
             velocity;
         public static bool 
@@ -66,12 +65,12 @@ namespace project_take_2.Content.Hero
         #region Methodes
         public void LoadContent(ContentManager Content)
         {
+            _state = HeroState.idle;
             _texture = Content.Load<Texture2D>("Sprites/heroPosibility1");
             _textureIdle = Content.Load<Texture2D>("Sprites/heroPosibilityIdle");
             _textureDie = Content.Load<Texture2D>("Sprites/heroPosibilityDie");
             _textureJump = Content.Load<Texture2D>("Sprites/heroPosibilityJump");
             font = Content.Load<SpriteFont>("Font/gameOver");
-            middle = new Vector2((Game1._graphics.PreferredBackBufferWidth - (gameOver.Length*128))/2 , (Game1._graphics.PreferredBackBufferHeight - 128) /2);
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -152,15 +151,16 @@ namespace project_take_2.Content.Hero
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live && hasJumped == false )
                 _heroAnimation.Idle.Update(gameTime, 6);
-            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||!live)
+            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||hitbox.Intersects(Venustrap.hitbox)||!live)
                 live = false;
             // source = Youtube User == Oyyou 
             if(hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);
             if (!hasJumped)
-                velocity.Y = 5f;
-            }
-            
+                velocity.Y = 10f;
+            middle.Y = positionAndSize.Y - 50;
+            middle.X = positionAndSize.X - 100;
+        }
         private void hitboxUpdate()
         {
             hitbox.X = positionAndSize.X + OffsetX;

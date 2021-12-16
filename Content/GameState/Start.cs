@@ -15,13 +15,16 @@ namespace project_take_2.Content.GameState
         private Rectangle 
             positionButton1,
             positionButton2;
-        private Vector2 
-            lvl1,
-            lvl2,
-            StartScreenVector;
+        private Vector2
+            lvlString1,
+            lvlString2,
+            gameString;
+        private Rectangle
+        StartScreenVector;
         private string 
             lv1 = "Level1",
-            lv2 = "Level2";
+            lv2 = "Level2",
+            gameTitle = "DruidsQuest";
         private SpriteFont 
             font;
         private bool
@@ -44,11 +47,12 @@ namespace project_take_2.Content.GameState
         #region Constructor
         public Start()
         {
-            positionButton1 = new Rectangle(300, 200, 200, 200);
-            positionButton2 = new Rectangle(940, 200, 200, 200);
-            lvl1 = new Vector2(300, 450);
-            lvl2 = new Vector2(940, 450);
-            StartScreenVector = new Vector2(0, 0);
+            positionButton1 = new Rectangle(150, 200, 100, 100);
+            positionButton2 = new Rectangle(550, 200, 100, 100);
+            lvlString1 = new Vector2(100, 310);
+            lvlString2 = new Vector2(500, 310);
+            gameString = new Vector2(Game1.screenW / 4, 100);
+            StartScreenVector = new Rectangle(0, 0,Game1.screenW, Game1.screenH);
             color1 = Color.White;
             color2 = Color.White;
         }
@@ -68,8 +72,9 @@ namespace project_take_2.Content.GameState
             _spritebatch.Draw(StartscreenTexture,StartScreenVector,Color.White);
             _spritebatch.Draw(buttonStartLevel1,positionButton1, color1);
             _spritebatch.Draw(buttonStartLevel2, positionButton2, color2);
-            _spritebatch.DrawString(font, lv1, lvl1, Color.Azure);
-            _spritebatch.DrawString(font, lv2, lvl2, Color.Azure);
+            _spritebatch.DrawString(font, lv1,lvlString1, Color.Azure);
+            _spritebatch.DrawString(font, lv2,lvlString2, Color.Azure);
+            _spritebatch.DrawString(font, gameTitle,gameString,Color.Azure);
             _spritebatch.End();
         }
         public void Update(GameTime gameTime) 

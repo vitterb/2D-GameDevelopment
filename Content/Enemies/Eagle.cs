@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
+using project_take_2.Content.interfaces;
 
 namespace project_take_2.Content.Enemies
 {
-    class Eagle : Enemy
+    class Eagle : Enemy, IEnemies
     {
         #region variables
 
@@ -15,8 +15,10 @@ namespace project_take_2.Content.Enemies
         #endregion
 
         #region constructor
-        public Eagle(int x, int y, int width, int height)
+        public Eagle(int x, int y, int width, int height, int limitedX1, int limitedX2)
         {
+            _limitedX1 = limitedX1;
+            _limitedX2 = limitedX2;
             _width = width;
             _height = height;
             _x = x;

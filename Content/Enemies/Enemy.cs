@@ -14,7 +14,7 @@ namespace project_take_2.Content.Enemies
             _texture;
         protected AnimationClass 
             animation;
-        protected int 
+        protected int
             _width,
             _height,
             _x,
@@ -29,7 +29,9 @@ namespace project_take_2.Content.Enemies
             frameworkHeight = 225,
             frameworkXb = 1042,
             offsetX,
-            offsetY;
+            offsetY,
+            _limitedX1,
+            _limitedX2;
         protected SpriteEffects 
             flip = SpriteEffects.None;
         #endregion
@@ -61,15 +63,21 @@ namespace project_take_2.Content.Enemies
         {
             SetHitbox();
             Move(_slowdown, _speed);
-            if (positionAndSize.X >= 1440)
+            if (positionAndSize.X >= _limitedX1)
             {
                 _speed *= -1;
-                flip = SpriteEffects.FlipHorizontally;
+                if (flip == SpriteEffects.None)
+                    flip = SpriteEffects.FlipHorizontally;
+                else
+                    flip = SpriteEffects.None;
             }
-            if (positionAndSize.X <= 0)
+            if (positionAndSize.X <= _limitedX2)
             {
                 _speed *= -1;
-                flip = SpriteEffects.None;
+                if (flip == SpriteEffects.None)
+                    flip = SpriteEffects.FlipHorizontally;
+                else
+                    flip = SpriteEffects.None;
             }
             animation.Update(gameTime, 6);
         }

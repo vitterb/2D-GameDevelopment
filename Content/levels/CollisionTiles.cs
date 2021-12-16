@@ -8,7 +8,7 @@ namespace project_take_2.Content.levels
         #region constructor
         public CollisionTiles(int i, Rectangle newRectangle )
         {
-            texture = Content.Load<Texture2D>("Sprites/Ground_grass_0001_tile");
+            texture = Content.Load<Texture2D>("tileSprites/tiles"+i);
             this.Rectangle = newRectangle;
         }
         #endregion
