@@ -29,7 +29,7 @@ namespace project_take_2.Content.Enemies
             offsetX = 37;
 
             positionAndSize = new Rectangle(_x, _y, _width, _height);
-            hitbox = new Rectangle(0, 0, _width, _height);
+            hitbox = new Rectangle(0, 0, _width/2, _height/2);
 
             animation = new AnimationClass();
             animation.AddFrame(new AnimationFrame(new Rectangle(frameworkX, 152, frameworkWidth, frameworkHeight)));

@@ -66,13 +66,15 @@ namespace project_take_2.Content.GameState
             if (!Character.live)
             {
                 counter++;
-                if (counter == 500)
+                if (counter == 350)
                 {
                     start.Menu = true;
                     lv1.LevelActive = false;
                     lv1.ResetLevel();
                 }
             }
+            if (Character.live)
+                counter = 0;
         }
         public void LoadContent(ContentManager content)
         {
