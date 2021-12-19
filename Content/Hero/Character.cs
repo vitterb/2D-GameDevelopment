@@ -30,7 +30,8 @@ namespace project_take_2.Content.Hero
         public static bool 
             live = true,
             hasAttacked,
-            hasJumped = false;
+            hasJumped = false,
+            victory =false;
         private int
             counter = 0,
             counter2 = 1;
@@ -62,6 +63,7 @@ namespace project_take_2.Content.Hero
             _heroAnimation = new HeroAnimation();
         }
         #endregion region
+
         #region Methodes
         public void LoadContent(ContentManager Content)
         {
@@ -121,8 +123,6 @@ namespace project_take_2.Content.Hero
                         flip,
                         0);
                     break;
-                case HeroState.attack:
-                    break;
                 default:
                     break;
             }
@@ -151,8 +151,10 @@ namespace project_take_2.Content.Hero
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live && hasJumped == false )
                 _heroAnimation.Idle.Update(gameTime, 6);
-            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||hitbox.Intersects(Venustrap.hitbox)||!live)
+            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||hitbox.Intersects(Venustrap.hitbox))
                 live = false;
+            if (hitbox.Intersects(Bunny.hitbox))
+                victory = true;
             // source = Youtube User == Oyyou 
             if(hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);

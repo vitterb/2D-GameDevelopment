@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace project_take_2.Content.levels
 {
-    internal class CollisionTiles : Tiles 
-    {
+    internal class CollisionTiles : Tiles
+    { 
+        // source = Youtube User == Oyyou 
         #region constructor
         public CollisionTiles(int i, Rectangle newRectangle )
         {

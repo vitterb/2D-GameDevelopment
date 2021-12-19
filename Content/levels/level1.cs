@@ -23,9 +23,12 @@ namespace project_take_2.Content.levels
             venus3,
             venus4;
         private Wolf
-            wolf1;
+            wolf1,
+            wolf2;
         private Bear
             bear1;
+        private Bunny
+            bunny;
         private ContentManager _content;
         private bool levelActive = false;
         private Tilemap tilemap;
@@ -40,10 +43,13 @@ namespace project_take_2.Content.levels
         {
             tilemap = new Tilemap();
             hero = new Character(0,768, 100, 100);
+            bunny = new Bunny(5400, 735, 50, 50, 5060, 5630);
+            //bunny = new Bunny(50, 768, 50, 50, 0, 150);
             eagle1 = new Eagle(800, 256, 100, 100, 0, 5500);
             eagle2 = new Eagle(1500, 256, 100, 100, 0, 5500);
             eagle3 = new Eagle(4850, 256, 100, 100, 0, 5500);
             wolf1 = new Wolf(2000, 900, 100, 100, 1664, 2100);
+            wolf2 = new Wolf(4900, 900, 100, 100, 4880, 5045);
             bear1 = new Bear(3000, 640, 200, 200, 2304, 3230);
             venus1 = new Venustrap(4224, 815, 100, 100);
             venus2 = new Venustrap(4302, 815, 100, 100);
@@ -56,8 +62,9 @@ namespace project_take_2.Content.levels
         #region Methodes
         public void ResetLevel()
         {
-            Character.live = true;
             Character.positionAndSize = new Rectangle(0, 768, 100, 100);
+            Character.live = true;
+            Character.victory = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -73,12 +80,14 @@ namespace project_take_2.Content.levels
             eagle2.Draw(_spriteBatch);
             eagle3.Draw(_spriteBatch);
             wolf1.Draw(_spriteBatch);
+            wolf2.Draw(_spriteBatch);
             bear1.Draw(_spriteBatch);
             tilemap.Draw(_spriteBatch);
             venus1.Draw(_spriteBatch);
             venus2.Draw(_spriteBatch);
             venus3.Draw(_spriteBatch);
             venus4.Draw(_spriteBatch);
+            bunny.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
             _spriteBatch.End();
         }
@@ -95,7 +104,9 @@ namespace project_take_2.Content.levels
             eagle2.LoadContent(_content);
             eagle3.LoadContent(_content);
             wolf1.LoadContent(_content);
+            wolf2.LoadContent(_content);
             bear1.LoadContent(_content);
+            bunny.LoadContent(_content);
             Tiles.Content = Content;
             tilemap.Generate(new int[,]
             {
@@ -116,7 +127,8 @@ namespace project_take_2.Content.levels
                 {1,2,2,2,2,2,2,2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,0,0,0,0,0,0,0,0,1,2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,2,2,2,2,2,5,5,5,5,6,0,0,0,4,5,5,5,5,5,5,5,6,},
                 {4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,2,2,2,2,2,2,2,2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,2,2,2,5,5,5,5,5,5,5,5,6,},
                 {4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,},
-                {4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,}
+                {4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,},
+                
             }, 64);
         }
         public void update(GameTime gameTime)
@@ -129,7 +141,9 @@ namespace project_take_2.Content.levels
             venus3.update(gameTime);
             venus4.update(gameTime);   
             wolf1.update(gameTime);
+            wolf2.update(gameTime);
             bear1.update(gameTime);
+            bunny.update(gameTime);
             foreach (CollisionTiles tile in tilemap.CollisionTiles)
             {
                 hero.TerrainCollision(tile.Rectangle, tilemap.Width, tilemap.Height);

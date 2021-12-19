@@ -6,6 +6,7 @@ namespace project_take_2.Content.levels
 {
     internal class Tiles
     {
+        // source = Youtube User == Oyyou 
         #region variables
         protected Texture2D texture;
         private Rectangle rectangle;
@@ -24,6 +25,7 @@ namespace project_take_2.Content.levels
             set { content = value; }
         }
         #endregion
+
         #region methodes
         public void Draw(SpriteBatch spriteBatch)
         {

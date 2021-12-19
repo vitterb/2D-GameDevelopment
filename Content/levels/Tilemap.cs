@@ -6,10 +6,12 @@ namespace project_take_2.Content.levels
 {
     internal class Tilemap
     {
+        // source = Youtube User == Oyyou 
         #region variables
         private List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
         private int width, height;
         #endregion
+
         #region Proporties
         public List<CollisionTiles> CollisionTiles
         {

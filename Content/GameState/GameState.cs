@@ -10,6 +10,7 @@ namespace project_take_2.Content.GameState
     {
         #region Variables
         private readonly splashscreen splash;
+        private readonly victory_screen victory;
         private readonly Start start;
         private readonly Level1 lv1;
         private readonly Level2 lv2;
@@ -24,6 +25,7 @@ namespace project_take_2.Content.GameState
             start = new Start();
             lv1 = new Level1();
             lv2 = new Level2();
+            victory = new victory_screen();
         }
         #endregion
         #region Methodes
@@ -38,6 +40,10 @@ namespace project_take_2.Content.GameState
                 if (start.Menu)
                 {
                     start.Draw(_spriteBatch);
+                }
+                else if (victory.VictoryScreen)
+                {
+                    victory.Draw(_spriteBatch);
                 }
                 else if (lv1.LevelActive)
                 {
@@ -63,18 +69,24 @@ namespace project_take_2.Content.GameState
             {
                 lv1.update(gameTime);
             }
-            if (!Character.live)
+            if (!Character.live || Character.victory)
             {
                 counter++;
                 if (counter == 350)
                 {
+                    victory.VictoryScreen = false;
                     start.Menu = true;
                     lv1.LevelActive = false;
                     lv1.ResetLevel();
                 }
             }
-            if (Character.live)
+            if (Character.live && !Character.victory)
                 counter = 0;
+            if (Character.victory)
+            {
+                lv1.LevelActive = false;
+                victory.VictoryScreen = true;
+            }
         }
         public void LoadContent(ContentManager content)
         {
@@ -82,6 +94,7 @@ namespace project_take_2.Content.GameState
             splash.LoadContent(_content);
             start.LoadContent(content);
             lv1.LoadContent(content);
+            victory.LoadContent(content);
         } 
         #endregion
     }
