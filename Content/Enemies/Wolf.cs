@@ -1,20 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
+using project_take_2.Content.interfaces;
 
 namespace project_take_2.Content.Enemies
 {
-    class Wolf : Enemy
+    class Wolf : Enemy, IEnemies
     {
         #region variables
-        public static Rectangle hitbox;
+        public static Rectangle hitbox; 
         #endregion
 
         #region constructor
-        public Wolf(int x, int y, int width, int height)
+        public Wolf(int x, int y, int width, int height, int limitedX1, int limitedX2)
         {
+            _limitedX1 = limitedX1;
+            _limitedX2 = limitedX2;
             _width = width;
             _height = height;
             _x = x;

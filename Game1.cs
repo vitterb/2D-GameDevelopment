@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.GameState;
 using project_take_2.Content.Input;
+using project_take_2.Content.levels;
 
 namespace project_take_2
 {
@@ -12,13 +13,11 @@ namespace project_take_2
         public static  GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private KeyInput keyInput;
-
-        private const int ScreenW = 1440, ScreenH = 900;
-
+        public static int 
+            screenW, 
+            screenH;
         private GameState game;
-
-        #endregion 
-
+        #endregion
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,15 +27,12 @@ namespace project_take_2
 
         protected override void Initialize()
         {
-            
-            _graphics.PreferredBackBufferWidth = ScreenW;
-            _graphics.PreferredBackBufferHeight = ScreenH;
+            screenW = _graphics.PreferredBackBufferWidth;
+            screenH = _graphics.PreferredBackBufferHeight;
             _graphics.ApplyChanges();
-
             Window.AllowUserResizing = false;
             Window.AllowAltF4 = true;
             Window.Title = "Awesome Game";
-
 
             base.Initialize();
         }
@@ -45,9 +41,9 @@ namespace project_take_2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             keyInput = new KeyInput();
-
             game = new GameState();
             game.LoadContent(Content);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,7 +54,7 @@ namespace project_take_2
             }
             game.Update(gameTime);
            
-            keyInput.Update();
+            keyInput.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -66,9 +62,7 @@ namespace project_take_2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            _spriteBatch.Begin();
-            game.Draw(_spriteBatch);
-            _spriteBatch.End();
+                game.Draw(_spriteBatch);
             base.Draw(gameTime);
         }
     }

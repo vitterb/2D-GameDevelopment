@@ -10,7 +10,7 @@ namespace project_take_2.Content.GameState
     public class splashscreen
     {
         private Texture2D splashscreenTexture;
-        private Vector2 position;
+        private Rectangle position;
         private double timer;
         private bool splash;
         private ContentManager _content;
@@ -20,7 +20,7 @@ namespace project_take_2.Content.GameState
         {
             timer = 0;
             splash = true;
-            position = new Vector2(0f);
+            position = new Rectangle(0,0,Game1.screenW,Game1.screenH);
         }
         public void LoadContent(ContentManager content)
         {
@@ -33,12 +33,14 @@ namespace project_take_2.Content.GameState
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
+            _spriteBatch.Begin();
             _spriteBatch.Draw
                 (
                     splashscreenTexture,
                     position,
                     Color.White
                 );
+            _spriteBatch.End();
         }
         public void update(GameTime gameTime)
         {

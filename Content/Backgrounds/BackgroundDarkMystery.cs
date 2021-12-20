@@ -14,20 +14,20 @@ namespace project_take_2.Content.Backgrounds
         protected Texture2D middle;
         protected Texture2D sky;
         protected Texture2D ground;
-        protected Vector2 positionSky;
-        protected Vector2 positionGround;
-        protected Vector2 positionForeGround;
-        protected Vector2 positionMiddle;
-        protected Vector2 positionBackground;
+        protected Rectangle positionSky;
+        protected Rectangle positionGround;
+        protected Rectangle positionForeGround;
+        protected Rectangle positionMiddle;
+        protected Rectangle positionBackground;
         #endregion
         #region constructor
         public BackgroundDarkMystery() 
         {
-            positionSky = new Vector2(0f);
-            positionGround = new Vector2(0f,-25f);
-            positionForeGround = new Vector2(0f, 5f);
-            positionMiddle = new Vector2(0f);
-            positionBackground = new Vector2(0f);
+            positionSky = new Rectangle(0,0,Game1.screenW,Game1.screenH);
+            positionGround = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
+            positionForeGround = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
+            positionMiddle = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
+            positionBackground = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
             
         }
         #endregion

@@ -3,21 +3,23 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
-
+using project_take_2.Content.interfaces;
 
 namespace project_take_2.Content.Enemies
 {
-    public class Bear : Enemy
+    public class Bear : Enemy, IEnemies
     {
         #region variables
         public static Rectangle hitbox;
         #endregion
 
         #region constructor
-        public Bear(int x, int y, int width, int height)
+        public Bear(int x, int y, int width, int height, int limitedX1, int limitedX2)
         {
             // setting up the bear enemy
 
+            _limitedX1 = limitedX1;
+            _limitedX2 = limitedX2;
             _width = width;
             _height = height;
             _x = x;
