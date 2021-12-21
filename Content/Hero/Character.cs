@@ -151,10 +151,7 @@ namespace project_take_2.Content.Hero
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Down)&& live && hasJumped == false )
                 _heroAnimation.Idle.Update(gameTime, 6);
-            if (hitbox.Intersects(Bear.hitbox) || hitbox.Intersects(Wolf.hitbox)|| hitbox.Intersects(Eagle.hitbox) ||hitbox.Intersects(Venustrap.hitbox))
-                live = false;
-            if (hitbox.Intersects(Bunny.hitbox))
-                victory = true;
+
             // source = Youtube User == Oyyou 
             if(hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);
@@ -162,6 +159,13 @@ namespace project_take_2.Content.Hero
                 velocity.Y = 10f;
             middle.Y = positionAndSize.Y - 50;
             middle.X = positionAndSize.X - 100;
+        }
+        public void collision(Enemy enemy)
+        {
+            if (hitbox.Intersects(enemy.Hitbox))
+                live = false;
+            if (hitbox.Intersects(Bunny.hitbox))
+                victory = true;
         }
         private void hitboxUpdate()
         {

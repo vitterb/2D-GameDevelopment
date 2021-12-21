@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using project_take_2.Content.Animation;
 using project_take_2.Content.interfaces;
@@ -8,6 +9,7 @@ namespace project_take_2.Content.Enemies
     public abstract class Enemy : IEnemies
     {
         #region variables 
+        protected Rectangle hitbox;
         protected Rectangle 
             positionAndSize;
         protected Texture2D 
@@ -35,7 +37,7 @@ namespace project_take_2.Content.Enemies
         protected SpriteEffects 
             flip = SpriteEffects.None;
         #endregion
-
+        public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
         #region methodes
 
         // Drawing the sprite no need to touch this!
@@ -86,6 +88,7 @@ namespace project_take_2.Content.Enemies
         {
             // update in the class of the enemy.
         }
+        public virtual void LoadContent(ContentManager content) { }
         #endregion
     }
 }

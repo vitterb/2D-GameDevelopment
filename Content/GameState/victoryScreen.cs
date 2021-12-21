@@ -18,9 +18,11 @@ namespace project_take_2.Content.GameState
         private string victoryString = "          Victory";
         private Vector2 victoryPosition;
         #endregion
+
         #region proporties
         public bool VictoryScreen { get { return victoryScreen; } set { victoryScreen = value; } }
         #endregion
+
         #region constructor
         public victory_screen()
         {
@@ -29,6 +31,7 @@ namespace project_take_2.Content.GameState
             victoryPosition = new Vector2(Game1.screenW/2, Game1.screenH - Game1.screenH/3);
         }
         #endregion
+
         #region methodes
         public void LoadContent(ContentManager content)
         {

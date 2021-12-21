@@ -9,7 +9,7 @@ namespace project_take_2.Content.GameState
     public class GameState
     {
         #region Variables
-        private readonly splashscreen splash;
+        private readonly Splashscreen splash;
         private readonly victory_screen victory;
         private readonly Start start;
         private readonly Level1 lv1;
@@ -21,7 +21,7 @@ namespace project_take_2.Content.GameState
         #region Constructor
         public GameState()
         { 
-            splash = new splashscreen();
+            splash = new Splashscreen();
             start = new Start();
             lv1 = new Level1();
             lv2 = new Level2();
@@ -49,6 +49,7 @@ namespace project_take_2.Content.GameState
                 {
                     lv1.Draw(_spriteBatch);
                 }
+
             }
         }
         public void Update(GameTime gameTime)

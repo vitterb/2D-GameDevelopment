@@ -9,6 +9,7 @@ namespace project_take_2.Content.Hero
         public enum HeroState { idle, walk, dead, jump, victory}
         private HeroState state;
         #endregion
+
         #region proporties
         public HeroState State { get { return state; } set { state = value; } }
         #endregion

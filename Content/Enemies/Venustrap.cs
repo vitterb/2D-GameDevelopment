@@ -10,7 +10,6 @@ namespace project_take_2.Content.Enemies
     public class Venustrap : Enemy
     {
         #region variables
-        public static Rectangle hitbox;
         public Rectangle plantTrapPNG;
         public int counter = 0;
         public int counter2 = 1;
@@ -38,7 +37,7 @@ namespace project_take_2.Content.Enemies
         }
         #endregion
         #region Methodes
-        public void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content)
         {
             _texture = Content.Load<Texture2D>("Sprites/planttrap");
         }

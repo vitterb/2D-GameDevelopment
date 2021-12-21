@@ -135,6 +135,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Font/gameOver.spritefont
 
+#begin Gamescreens/Logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Gamescreens/Logo.png
+
 #begin Gamescreens/rabbit campfire.jpg
 /importer:TextureImporter
 /processor:TextureProcessor

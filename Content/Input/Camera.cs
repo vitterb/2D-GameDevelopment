@@ -11,6 +11,7 @@ namespace project_take_2.Content.Input
         #region variables
         private Matrix transform;
         #endregion
+
         #region proporties
         public Matrix Transform
         {
@@ -18,6 +19,7 @@ namespace project_take_2.Content.Input
             private set { transform = value; }
         }
         #endregion
+
         #region methodes
         public void Follow(RectangleF rectangleF)
         {

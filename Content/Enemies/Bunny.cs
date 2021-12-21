@@ -1,17 +1,41 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.Animation;
 
 namespace project_take_2.Content.Enemies
 {
-    class Bunny : Enemy
+    class Bunny 
     {
         #region variables
         public static Rectangle hitbox;
+        protected Rectangle
+            positionAndSize;
+        protected Texture2D
+            _texture;
+        protected AnimationClass
+            animation;
+        protected int
+            _width,
+            _height,
+            _x,
+            _y,
+            _speed = 1,
+            _slowdown = 1,
+            widthOffset = 10,
+            HeightOffset = 50,
+            frameworkX = 250,
+            frameworkY,
+            frameworkWidth = 260,
+            frameworkHeight = 225,
+            frameworkXb = 1042,
+            offsetX,
+            offsetY,
+            _limitedX1,
+            _limitedX2;
+        protected SpriteEffects
+            flip = SpriteEffects.None;
         #endregion
-
         #region constructor
         public Bunny(int x, int y, int width, int height, int limitedX1, int limitedX2)
         {
@@ -39,11 +63,11 @@ namespace project_take_2.Content.Enemies
         #endregion
 
         #region methodes
-        public override void Move(int deceleration, int speed)
+        public void Move(int deceleration, int speed)
         {
             positionAndSize.X += speed / deceleration;
         }
-        public override void SetHitbox()
+        public void SetHitbox()
         {
             hitbox.X = positionAndSize.X + widthOffset;
             hitbox.Y = positionAndSize.Y - HeightOffset;
@@ -53,6 +77,40 @@ namespace project_take_2.Content.Enemies
         public void LoadContent(ContentManager Content)
         {
             _texture = Content.Load<Texture2D>("Sprites/bunnySprite");
+        }
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            _spriteBatch.Draw(
+                _texture,
+                positionAndSize,
+                animation.currentFrame.Source,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                flip,
+                0);
+        }
+        public void update(GameTime gameTime)
+        {
+            SetHitbox();
+            Move(_slowdown, _speed);
+            if (positionAndSize.X >= _limitedX1)
+            {
+                _speed *= -1;
+                if (flip == SpriteEffects.None)
+                    flip = SpriteEffects.FlipHorizontally;
+                else
+                    flip = SpriteEffects.None;
+            }
+            if (positionAndSize.X <= _limitedX2)
+            {
+                _speed *= -1;
+                if (flip == SpriteEffects.None)
+                    flip = SpriteEffects.FlipHorizontally;
+                else
+                    flip = SpriteEffects.None;
+            }
+            animation.Update(gameTime, 6);
         }
         #endregion
 

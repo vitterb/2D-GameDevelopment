@@ -8,10 +8,6 @@ namespace project_take_2.Content.Enemies
 {
     class Wolf : Enemy, IEnemies
     {
-        #region variables
-        public static Rectangle hitbox; 
-        #endregion
-
         #region constructor
         public Wolf(int x, int y, int width, int height, int limitedX1, int limitedX2)
         {
@@ -52,7 +48,7 @@ namespace project_take_2.Content.Enemies
             hitbox.Width = positionAndSize.Width - widthOffset;
             hitbox.Height = positionAndSize.Height - HeightOffset;
         }
-        public void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content)
         {
             _texture = Content.Load<Texture2D>("Sprites/wolf2");
         }

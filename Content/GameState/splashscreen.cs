@@ -1,31 +1,37 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace project_take_2.Content.GameState
 {
-    public class splashscreen
+    public class Splashscreen
     {
+        #region Variables
         private Texture2D splashscreenTexture;
         private Rectangle position;
         private double timer;
         private bool splash;
         private ContentManager _content;
-        public bool Splash { get { return splash; } }
+        #endregion
 
-        public splashscreen()
+        #region proporties
+        public bool Splash { get { return splash; } } 
+        #endregion
+
+        #region Constructor
+        public Splashscreen()
         {
             timer = 0;
             splash = true;
-            position = new Rectangle(0,0,Game1.screenW,Game1.screenH);
+            position = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
         }
+        #endregion
+
+        #region methodes
         public void LoadContent(ContentManager content)
         {
             _content = new ContentManager(content.ServiceProvider, "Content");
-            splashscreenTexture = _content.Load<Texture2D>("Gamescreens/SplashTemp");
+            splashscreenTexture = _content.Load<Texture2D>("Gamescreens/Logo");
         }
         public void UnloadContent()
         {
@@ -49,6 +55,7 @@ namespace project_take_2.Content.GameState
             {
                 splash = false;
             }
-        }
+        } 
+        #endregion
     }
 }
