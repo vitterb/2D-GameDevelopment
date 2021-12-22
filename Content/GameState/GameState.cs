@@ -38,18 +38,13 @@ namespace project_take_2.Content.GameState
             else if (!splash.Splash)
             {
                 if (start.Menu)
-                {
                     start.Draw(_spriteBatch);
-                }
                 else if (victory.VictoryScreen)
-                {
                     victory.Draw(_spriteBatch);
-                }
-                else if (lv1.LevelActive)
-                {
+                else if (lv1.Level1Active)
                     lv1.Draw(_spriteBatch);
-                }
-
+                else if (lv2.Level2Active)
+                    lv2.Draw(_spriteBatch);
             }
         }
         public void Update(GameTime gameTime)
@@ -59,17 +54,15 @@ namespace project_take_2.Content.GameState
             else
                 splash.UnloadContent();
             if (start.Menu)
-            {
                 start.Update(gameTime);
-            }
             if (start.Button1)
-            {
-                lv1.LevelActive = true;
-            }
-            if (lv1.LevelActive)
-            {
-                lv1.update(gameTime);
-            }
+                lv1.Level1Active = true;
+            if (lv1.Level1Active)
+                lv1.Update(gameTime);
+            if (start.Button2)
+                lv2.Level2Active = true;
+            if (lv2.Level2Active)
+                lv2.Update(gameTime);
             if (!Character.live || Character.victory)
             {
                 counter++;
@@ -77,15 +70,24 @@ namespace project_take_2.Content.GameState
                 {
                     victory.VictoryScreen = false;
                     start.Menu = true;
-                    lv1.LevelActive = false;
-                    lv1.ResetLevel();
+                    if (lv1.Level1Active)
+                    {
+                        lv1.Level1Active = false;
+                        lv1.ResetLevel();
+                    }
+                    if (lv2.Level2Active)
+                    {
+                        lv2.Level2Active = false;
+                        lv2.ResetLevel2();
+                    }
+                    
                 }
             }
             if (Character.live && !Character.victory)
                 counter = 0;
             if (Character.victory)
             {
-                lv1.LevelActive = false;
+                lv1.Level1Active = false;
                 victory.VictoryScreen = true;
             }
         }
@@ -95,6 +97,7 @@ namespace project_take_2.Content.GameState
             splash.LoadContent(_content);
             start.LoadContent(content);
             lv1.LoadContent(content);
+            lv2.LoadContent(content);
             victory.LoadContent(content);
         } 
         #endregion

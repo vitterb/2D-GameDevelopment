@@ -8,7 +8,7 @@ namespace project_take_2.Content.levels
     {
         // source = Youtube User == Oyyou 
         #region variables
-        private List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
+        private readonly List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
         private int width, height;
         #endregion
 

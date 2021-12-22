@@ -21,7 +21,7 @@ namespace project_take_2.Content.Hero
             _textureIdle,
             _textureDie,
             _textureJump;
-        private HeroAnimation 
+        private readonly HeroAnimation 
             _heroAnimation;
         public static RectangleF
             hitbox,
@@ -35,7 +35,7 @@ namespace project_take_2.Content.Hero
         private int
             counter = 0,
             counter2 = 1;
-        private int 
+        private readonly int 
             OffsetX = 25,
             _width,
             _height,
@@ -47,7 +47,7 @@ namespace project_take_2.Content.Hero
             font;
         private Vector2 
             middle;
-        private string 
+        private readonly string 
             gameOver = "GAME OVER";
         #endregion
 
@@ -127,10 +127,10 @@ namespace project_take_2.Content.Hero
                     break;
             }
         }
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             currentState = SetState(_state);
-            hitboxUpdate();
+            HitboxUpdate();
             counter2++;
             counter++;
             if (counter2 > 10)
@@ -160,14 +160,14 @@ namespace project_take_2.Content.Hero
             middle.Y = positionAndSize.Y - 50;
             middle.X = positionAndSize.X - 100;
         }
-        public void collision(Enemy enemy)
+        public void Collision(Enemy enemy)
         {
             if (hitbox.Intersects(enemy.Hitbox))
                 live = false;
             if (hitbox.Intersects(Bunny.hitbox))
                 victory = true;
         }
-        private void hitboxUpdate()
+        private void HitboxUpdate()
         {
             hitbox.X = positionAndSize.X + OffsetX;
             hitbox.Y = positionAndSize.Y;
@@ -176,20 +176,20 @@ namespace project_take_2.Content.Hero
         }
         public void TerrainCollision(Rectangle newRectangle, int xOffset, int yOffset)
         {
-            if (((Rectangle)hitbox).TouchTopOf(newRectangle)){
-                hitbox.Y = newRectangle.Y- hitbox.Height;
+            if (((Rectangle)positionAndSize).TouchTopOf(newRectangle)){
+                positionAndSize.Y = newRectangle.Y - positionAndSize.Height + 5;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
-            if (((Rectangle)hitbox).TouchLeftOf(newRectangle))
+            if (((Rectangle)positionAndSize).TouchLeftOf(newRectangle))
             {
-                positionAndSize.X = newRectangle.X - hitbox.Width - 2 ;
+                positionAndSize.X = newRectangle.X - positionAndSize.Width - 10;
             }
-            if (((Rectangle)hitbox).TouchRightOf(newRectangle))
+            if (((Rectangle)positionAndSize).TouchRightOf(newRectangle))
             {
-                positionAndSize.X = newRectangle.X + newRectangle.Width + 2 ;
+                positionAndSize.X = newRectangle.X + newRectangle.Width + 10;
             }
-            if (((Rectangle)hitbox).TouchBottomOf(newRectangle))
+            if (((Rectangle)positionAndSize).TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
             }

@@ -24,13 +24,9 @@ namespace project_take_2.Content.Enemies
             _slowdown = 1,
             widthOffset = 10,
             HeightOffset = 50,
-            frameworkX = 250,
-            frameworkY,
             frameworkWidth = 260,
             frameworkHeight = 225,
             frameworkXb = 1042,
-            offsetX,
-            offsetY,
             _limitedX1,
             _limitedX2;
         protected SpriteEffects
@@ -45,15 +41,11 @@ namespace project_take_2.Content.Enemies
             _height = height;
             _x = x;
             _y = y;
-
-
             positionAndSize = new Rectangle(_x, _y, _width, _height);
             hitbox = new Rectangle(0, 0, _width, _height);
-
             frameworkWidth = 38;
             frameworkHeight = 38;
             _speed = 2;
-
             animation = new AnimationClass();
             animation.AddFrame(new AnimationFrame(new Rectangle(13, 211, frameworkWidth, frameworkHeight)));
             animation.AddFrame(new AnimationFrame(new Rectangle(53, 211, frameworkWidth, frameworkHeight)));
@@ -90,7 +82,7 @@ namespace project_take_2.Content.Enemies
                 flip,
                 0);
         }
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             SetHitbox();
             Move(_slowdown, _speed);

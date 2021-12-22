@@ -7,13 +7,10 @@ using System.Text;
 
 namespace project_take_2.Content.interfaces
 {
-    internal interface Ilevel
+    internal interface ILevel
     {
-        bool LevelActive  { get; set; }
-
-        public void ResetLevel();
         public void Draw(SpriteBatch _spriteBatch);
         public void LoadContent(ContentManager Content);
-        public void update(GameTime gameTime);
+        public void Update(GameTime gameTime);
     }
 }
