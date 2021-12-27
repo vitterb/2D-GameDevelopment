@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using project_take_2.Content.Backgrounds;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
 using project_take_2.Content.interfaces;
 using System.Collections.Generic;
+using project_take_2.Content.Sounds;
 
 namespace project_take_2.Content.levels
 {
@@ -21,6 +24,7 @@ namespace project_take_2.Content.levels
         private readonly Tilemap tilemap;
         private readonly Camera camera;
         private readonly BackgroundDarkMystery backGround;
+        private readonly BackgroundNoise backgroundNoise;
         #endregion
 
         #region properties
@@ -30,6 +34,7 @@ namespace project_take_2.Content.levels
         #region Constructor
         public Level1()
         {
+            backgroundNoise = new BackgroundNoise();
             tilemap = new Tilemap();
             herolv1 = new Character(0,720, 100, 100);
             enemieslv1 = new List<Enemy>
@@ -56,7 +61,6 @@ namespace project_take_2.Content.levels
         {
             Character.live = true;
             Character.positionAndSize = new Rectangle(0, 720, 100, 100);
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -77,6 +81,7 @@ namespace project_take_2.Content.levels
         }
         public void LoadContent(ContentManager Content)
         {
+            backgroundNoise.LoadContent(Content);
             _content = new ContentManager(Content.ServiceProvider, "Content");
             backGround.LoadContent(_content);
             herolv1.LoadContent(_content);
@@ -109,6 +114,11 @@ namespace project_take_2.Content.levels
         }
         public void Update(GameTime gameTime)
         {
+            if (!MediaPlayer.IsRepeating)
+                backgroundNoise.Play();
+            if (!Character.live || Character.victory)
+                backgroundNoise.Stop();
+            herolv1.Update(gameTime);
             bunny.Update(gameTime);
             foreach (var enemy in enemieslv1)
             {
@@ -119,9 +129,7 @@ namespace project_take_2.Content.levels
             {
                 herolv1.TerrainCollision(tile.Rectangle, tilemap.Width, tilemap.Height);
                 camera.Follow(Character.positionAndSize);
-            }
-            herolv1.Update(gameTime);
-           
+            }           
         }
         #endregion
     }

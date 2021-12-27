@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using project_take_2.Content.Sounds;
 
 namespace project_take_2.Content.GameState
 {
@@ -12,6 +13,7 @@ namespace project_take_2.Content.GameState
         private double timer;
         private bool splash;
         private ContentManager _content;
+        private BackgroundNoise backgroundNoise;
         #endregion
 
         #region proporties

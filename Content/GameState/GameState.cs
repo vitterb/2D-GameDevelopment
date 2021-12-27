@@ -32,9 +32,7 @@ namespace project_take_2.Content.GameState
         public void Draw(SpriteBatch _spriteBatch)
         {
             if (splash.Splash)
-            {
                 splash.Draw(_spriteBatch);
-            }
             else if (!splash.Splash)
             {
                 if (start.Menu)
@@ -88,6 +86,7 @@ namespace project_take_2.Content.GameState
             if (Character.victory)
             {
                 lv1.Level1Active = false;
+                lv2.Level2Active = false;
                 victory.VictoryScreen = true;
             }
         }
