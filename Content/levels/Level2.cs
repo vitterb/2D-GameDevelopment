@@ -32,7 +32,7 @@ namespace project_take_2.Content.levels
         #region Constructor
         public Level2()
         {
-            herolv2 = new Character(0, 888, 100, 100);
+            herolv2 = new Character(0, 720, 100, 100);
             enemiesLv2 = new List<Enemy>
             {
                 
