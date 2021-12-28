@@ -16,7 +16,7 @@ namespace project_take_2.Content.levels
     public class Level1 : ILevel
     {
         #region variables
-        private readonly Character herolv1;
+        private Character herolv1;
         public List<Enemy> enemieslv1;
         private readonly Bunny bunny;
         private ContentManager _content;
@@ -30,6 +30,7 @@ namespace project_take_2.Content.levels
 
         #region properties
         public bool Level1Active { get { return levelActive; } set { levelActive = value; } }
+        public Character Herolv1 { get { return herolv1; } set { herolv1 = value; } }
         #endregion
 
         #region Constructor
@@ -63,7 +64,8 @@ namespace project_take_2.Content.levels
         {
             herolv1.Live = true;
             herolv1.PositionAndSize = new Rectangle(0, 720, 100, 100);
-            sound.Played = false;
+            sound.PlayedVictory = false;
+            sound.PlayedScream = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

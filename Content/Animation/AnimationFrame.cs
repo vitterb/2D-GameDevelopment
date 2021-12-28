@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿//code by Tom Peeters
+
+using Microsoft.Xna.Framework;
 
 namespace project_take_2.Content.Animation
 {

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using project_take_2.Content.Hero;
+using project_take_2.Content.Sounds;
 
 
 namespace project_take_2.Content.GameState
@@ -59,7 +60,9 @@ namespace project_take_2.Content.GameState
         public void update(GameTime gameTime)
         {
             if (Character.victory)
-                victoryScreen = true;            
+            {
+                victoryScreen = true;
+            }
         }
         #endregion
     }

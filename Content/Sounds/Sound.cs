@@ -10,9 +10,11 @@ namespace project_take_2.Content.Sounds
     public class Sound
     {
         private List<SoundEffect> soundeffects;
-        private bool played = false;
+        private bool playedScream = false;
+        private bool playedVictory = false;
 
-        public bool Played { get { return played; } set { played = value; } }
+        public bool PlayedScream { get { return playedScream; } set { playedScream = value; } }
+        public bool PlayedVictory { get { return playedVictory; } set { playedVictory = value; } }
 
         public Sound()
         {
@@ -37,16 +39,24 @@ namespace project_take_2.Content.Sounds
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Space))
                     soundeffects[0].Play();
-            if (!Character.live && !played)
+            if (!Character.live && !playedScream)
             {
-                soundeffects[1].Play();
-                played = true;
+                playScream();
             }
-            if (Character.victory && !played)
+            if (Character.victory && !playedVictory)
             {
-                soundeffects[2].Play();
-                played = true;
+                playVictory();
             }
+        }
+        public void playVictory()
+        {
+            soundeffects[2].Play();
+            playedVictory = true;
+        }
+        public void playScream()
+        {
+            soundeffects[1].Play();
+            playedScream = true;
         }
     }
 }

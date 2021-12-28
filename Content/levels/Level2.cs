@@ -69,7 +69,8 @@ namespace project_take_2.Content.levels
         {
             herolv2.Live= true;
             herolv2.PositionAndSize = new Rectangle(0, 1000, 100, 100);
-            sound.Played = false;
+            sound.PlayedVictory = false;
+            sound.PlayedScream = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

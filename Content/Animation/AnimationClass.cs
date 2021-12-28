@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Code by Tom Peeters
+
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace project_take_2.Content.Animation
