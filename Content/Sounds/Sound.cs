@@ -21,8 +21,11 @@ namespace project_take_2.Content.Sounds
         }
         public void LoadContent(ContentManager content)
         {
+            // jump soundeffect by dklon (opengameart.org)
             soundeffects.Add(content.Load<SoundEffect>("Sounds/jump"));
             soundeffects.Add(content.Load<SoundEffect>("Sounds/WilhelmScream"));
+            // fanfare soundeffect http://cynicmusic.com http://pixelsphere.org
+            soundeffects.Add(content.Load<SoundEffect>("Sounds/victory"));
         }
 
         public void SoundJump()
@@ -37,6 +40,11 @@ namespace project_take_2.Content.Sounds
             if (!Character.live && !played)
             {
                 soundeffects[1].Play();
+                played = true;
+            }
+            if (Character.victory && !played)
+            {
+                soundeffects[2].Play();
                 played = true;
             }
         }

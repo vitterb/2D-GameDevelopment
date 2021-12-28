@@ -64,9 +64,10 @@ namespace project_take_2.Content.GameState
             if (!Character.live || Character.victory)
             {
                 counter++;
-                if (counter == 350)
+                if (counter >= 500)
                 {
                     victory.VictoryScreen = false;
+                    Character.victory = false;
                     start.Menu = true;
                     if (lv1.Level1Active)
                     {
