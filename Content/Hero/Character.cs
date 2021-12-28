@@ -53,6 +53,12 @@ namespace project_take_2.Content.Hero
         private readonly Sound sound;
         #endregion
 
+        #region proporties
+        public bool Live { get { return live; } set { live = value; } }
+        public bool Victory { get { return victory; } set { victory = value; } }
+        public RectangleF PositionAndSize { get { return positionAndSize; } set { positionAndSize = value; } }
+        #endregion
+
         #region Constructor
         public Character( int x, int y, int width, int height)
         {   

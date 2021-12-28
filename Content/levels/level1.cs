@@ -61,8 +61,8 @@ namespace project_take_2.Content.levels
         #region Methodes
         public void ResetLevel()
         {
-            Character.live = true;
-            Character.positionAndSize = new Rectangle(0, 720, 100, 100);
+            herolv1.Live = true;
+            herolv1.PositionAndSize = new Rectangle(0, 720, 100, 100);
             sound.Played = false;
         }
         public void Draw(SpriteBatch _spriteBatch)

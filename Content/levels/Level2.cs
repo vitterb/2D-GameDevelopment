@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using project_take_2.Content.Backgrounds;
 using project_take_2.Content.Enemies;
 using project_take_2.Content.Hero;
 using project_take_2.Content.Input;
 using project_take_2.Content.interfaces;
+using project_take_2.Content.Sounds;
 using System.Collections.Generic;
 
 
@@ -23,6 +25,8 @@ namespace project_take_2.Content.levels
         private readonly Tilemap tilemap;
         private readonly Camera camera;
         private readonly BackgroundDarkMystery backGround;
+        private readonly BackgroundNoise backgroundNoise;
+        private readonly Sound sound;
         #endregion
 
         #region properties
@@ -32,9 +36,26 @@ namespace project_take_2.Content.levels
         #region Constructor
         public Level2()
         {
+            backgroundNoise = new BackgroundNoise();
+            sound = new Sound();
             herolv2 = new Character(0, 720, 100, 100);
+            bunny = new Bunny(4550, 90, 50, 50, 4550, 4700);
             enemiesLv2 = new List<Enemy>
             {
+                new Venustrap(465,1130,100,100),
+                new Venustrap(905,1130,100,100),
+                new Venustrap(1350,1130,100,100),
+                new Venustrap(1810,1130,100,100),
+                new Venustrap(2250,1130,100,100),
+                new Wolf(480,260,100,100,480,3100),
+                new Wolf(1500,260,100,100,480,3100),
+                new Wolf(2685,260,100,100,480,3100),
+                new Wolf(3000,260,100,100,480,3100),
+                new Eagle(0,60,100,100,0,4250),
+                new Eagle(1000,60,100,100,0,4250),
+                new Eagle(2000,60,100,100,0,4250),
+                new Bear(3000,1025,200,200,3000,3750),
+                new Bear(5000,1025,200,200,4850,5450)
                 
             };
             tilemap = new Tilemap();
@@ -46,8 +67,9 @@ namespace project_take_2.Content.levels
         #region Methodes
         public void ResetLevel2()
         {
-            Character.live = true;
-            Character.positionAndSize = new Rectangle(0, 888, 100, 100);
+            herolv2.Live= true;
+            herolv2.PositionAndSize = new Rectangle(0, 720, 100, 100);
+            sound.Played = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -59,15 +81,23 @@ namespace project_take_2.Content.levels
             backGround.DrawGround(_spriteBatch);
             _spriteBatch.End();
             _spriteBatch.Begin(transformMatrix: camera.Transform);
-            herolv2.Draw(_spriteBatch);
+            bunny.Draw(_spriteBatch);
+            foreach (var item in enemiesLv2)
+                item.Draw(_spriteBatch);
             tilemap.Draw(_spriteBatch);
+            herolv2.Draw(_spriteBatch);
             _spriteBatch.End();
         }
         public void LoadContent(ContentManager Content)
         {
+            backgroundNoise.LoadContent(Content);
+            sound.LoadContent(Content);
             _content = new ContentManager(Content.ServiceProvider, "Content");
             backGround.LoadContent(_content);
+            bunny.LoadContent(_content);
             herolv2.LoadContent(_content);
+            foreach (var item in enemiesLv2)
+                item.LoadContent(_content);
             Tiles.Content = Content;
             tilemap.Generate(new int[,]
             {
@@ -82,13 +112,13 @@ namespace project_take_2.Content.levels
                 {0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,5 ,13,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,4 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,},
                 {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,13,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,4 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
                 {0 ,0 ,7 ,8 ,9 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5 ,5 ,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,4 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,7 ,8 ,9 ,0 ,7 ,8 ,9 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5 ,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,4 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,7 ,8 ,9 ,0 ,7 ,8 ,9 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5 ,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,4 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
                 {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,1 ,2 ,15,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,7 ,9 ,0 ,0 ,0 ,0 ,7 ,8 ,9 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,11,12,5 ,6 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,11,13,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,13,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
-                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,3 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,7 ,9 ,0 ,0 ,0 ,0 ,7 ,8 ,9 ,0 ,0 ,0 ,0 ,0 ,0 ,11,5 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,11,12,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,11,13,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,10,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,3 ,0 ,10,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,5 ,13,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
+                {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5, 5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,4 ,5 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,},
                 {1 ,2 ,2 ,2 ,2 ,2 ,3 ,0 ,0 ,1 ,2 ,2 ,2 ,3 ,0 ,0 ,1 ,2 ,2 ,2 ,3 ,0 ,0 ,1 ,2 ,2 ,2 ,3 ,0 ,0 ,1 ,2 ,2 ,2 ,3 ,0 ,0 ,1 ,2 ,2 ,2 ,15,5, 5 ,14,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,15,5 ,14,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,15,14,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,3 ,},
                 {4 ,5 ,5 ,5 ,5 ,5 ,14,2 ,2 ,15,5 ,5 ,5 ,14,2 ,2 ,15,5 ,5 ,5 ,14,2 ,2 ,15,5 ,5 ,5 ,14,2 ,2 ,15,5 ,5 ,5 ,14,2 ,2 ,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,6 ,},
                 {4 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,6 ,},
@@ -97,7 +127,18 @@ namespace project_take_2.Content.levels
         }
         public void Update(GameTime gameTime)
         {
+            bunny.Update(gameTime);
+            sound.Update(gameTime);
+            if (!MediaPlayer.IsRepeating)
+                backgroundNoise.Play();
+            if (!herolv2.Live || herolv2.Victory)
+                backgroundNoise.Stop();
             herolv2.Update(gameTime);
+            foreach (var enemy in enemiesLv2)
+            {
+                enemy.update(gameTime);
+                herolv2.Collision(enemy);
+            }
             foreach (CollisionTiles tile in tilemap.CollisionTiles)
             {
                 herolv2.TerrainCollision(tile.Rectangle, tilemap.Width, tilemap.Height);
