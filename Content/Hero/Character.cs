@@ -8,6 +8,7 @@ using project_take_2.Content.Enemies;
 using project_take_2.Content.interfaces;
 using static project_take_2.Content.levels.RectangleHelper;
 using static project_take_2.Content.Hero.CharacterState;
+using project_take_2.Content.Sounds;
 
 namespace project_take_2.Content.Hero
 {
@@ -49,6 +50,7 @@ namespace project_take_2.Content.Hero
             middle;
         private readonly string 
             gameOver = "GAME OVER";
+        private readonly Sound sound;
         #endregion
 
         #region Constructor
@@ -153,7 +155,7 @@ namespace project_take_2.Content.Hero
                 _heroAnimation.Idle.Update(gameTime, 6);
 
             // source = Youtube User == Oyyou 
-            if(hasJumped)
+            if (hasJumped)
                 _heroAnimation.Jump.Update(gameTime, 6);
             if (!hasJumped)
                 velocity.Y = 10f;

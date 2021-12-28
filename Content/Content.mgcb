@@ -177,6 +177,18 @@
 /processorParam:Quality=Medium
 /build:Sounds/Forest.mp3
 
+#begin Sounds/jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/jump.wav
+
+#begin Sounds/WilhelmScream.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/WilhelmScream.wav
+
 #begin Sprites/bear.png
 /importer:TextureImporter
 /processor:TextureProcessor

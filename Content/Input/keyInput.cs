@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using project_take_2.Content.interfaces;
 using Microsoft.Xna.Framework;
-
+using project_take_2.Content.Sounds;
 
 namespace project_take_2.Content.Input
 {

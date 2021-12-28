@@ -25,6 +25,7 @@ namespace project_take_2.Content.levels
         private readonly Camera camera;
         private readonly BackgroundDarkMystery backGround;
         private readonly BackgroundNoise backgroundNoise;
+        private readonly Sound sound;
         #endregion
 
         #region properties
@@ -35,6 +36,7 @@ namespace project_take_2.Content.levels
         public Level1()
         {
             backgroundNoise = new BackgroundNoise();
+            sound = new Sound();
             tilemap = new Tilemap();
             herolv1 = new Character(0,720, 100, 100);
             enemieslv1 = new List<Enemy>
@@ -61,6 +63,7 @@ namespace project_take_2.Content.levels
         {
             Character.live = true;
             Character.positionAndSize = new Rectangle(0, 720, 100, 100);
+            sound.Played = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -82,6 +85,7 @@ namespace project_take_2.Content.levels
         public void LoadContent(ContentManager Content)
         {
             backgroundNoise.LoadContent(Content);
+            sound.LoadContent(Content);
             _content = new ContentManager(Content.ServiceProvider, "Content");
             backGround.LoadContent(_content);
             herolv1.LoadContent(_content);
@@ -114,6 +118,7 @@ namespace project_take_2.Content.levels
         }
         public void Update(GameTime gameTime)
         {
+            sound.Update(gameTime);
             if (!MediaPlayer.IsRepeating)
                 backgroundNoise.Play();
             if (!Character.live || Character.victory)
