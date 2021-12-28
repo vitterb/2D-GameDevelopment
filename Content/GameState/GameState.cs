@@ -12,8 +12,8 @@ namespace project_take_2.Content.GameState
         private readonly Splashscreen splash;
         private readonly victory_screen victory;
         private readonly Start start;
-        private readonly Level1 lv1;
-        private readonly Level2 lv2;
+        private Level1 lv1;
+        private Level2 lv2;
         private int counter = 1;
         private ContentManager _content;
 
@@ -39,9 +39,9 @@ namespace project_take_2.Content.GameState
                     start.Draw(_spriteBatch);
                 else if (victory.VictoryScreen)
                     victory.Draw(_spriteBatch);
-                else if (lv1.Level1Active)
+                else if (lv1.Level1Active && !lv2.Level2Active)
                     lv1.Draw(_spriteBatch);
-                else if (lv2.Level2Active)
+                else if (lv2.Level2Active && !lv1.Level1Active)
                     lv2.Draw(_spriteBatch);
             }
         }
@@ -54,12 +54,18 @@ namespace project_take_2.Content.GameState
             if (start.Menu)
                 start.Update(gameTime);
             if (start.Button1)
+            {
+                loadLevel1();
                 lv1.Level1Active = true;
-            if (lv1.Level1Active)
+            }
+            if (lv1.Level1Active && !lv2.Level2Active)
                 lv1.Update(gameTime);
             if (start.Button2)
+            { 
+                LoadLevel2();
                 lv2.Level2Active = true;
-            if (lv2.Level2Active)
+            }
+            if (lv2.Level2Active && !lv1.Level1Active)
                 lv2.Update(gameTime);
             if (!Character.live || Character.victory)
             {
@@ -100,6 +106,18 @@ namespace project_take_2.Content.GameState
             lv2.LoadContent(content);
             victory.LoadContent(content);
         } 
+        public void loadLevel1()
+        {
+            lv1 = new Level1();
+            lv1.LoadContent(_content);
+            start.Button1 = false;
+        }
+        public void LoadLevel2()
+        {
+            lv2 = new Level2();
+            lv2.LoadContent(_content);
+            start.Button2 = false;
+        }
         #endregion
     }
 }

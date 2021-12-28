@@ -88,6 +88,10 @@ namespace project_take_2.Content.levels
             herolv2.Draw(_spriteBatch);
             _spriteBatch.End();
         }
+        public void UnLoadContent()
+        {
+            _content.Unload();
+        }
         public void LoadContent(ContentManager Content)
         {
             backgroundNoise.LoadContent(Content);

@@ -82,17 +82,21 @@ namespace project_take_2.Content.levels
             herolv1.Draw(_spriteBatch);
             _spriteBatch.End();
         }
+        public void UnloadContent()
+        {
+            _content.Unload();
+        }
         public void LoadContent(ContentManager Content)
         {
-            backgroundNoise.LoadContent(Content);
-            sound.LoadContent(Content);
             _content = new ContentManager(Content.ServiceProvider, "Content");
+            backgroundNoise.LoadContent(_content);
+            sound.LoadContent(_content);
             backGround.LoadContent(_content);
             herolv1.LoadContent(_content);
             bunny.LoadContent(_content);
             foreach (var enemy in enemieslv1)
                 enemy.LoadContent(_content);
-            Tiles.Content = Content;
+            Tiles.Content = _content;
             tilemap.Generate(new int[,]
             {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
