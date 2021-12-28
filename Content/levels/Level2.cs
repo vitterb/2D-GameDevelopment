@@ -38,7 +38,7 @@ namespace project_take_2.Content.levels
         {
             backgroundNoise = new BackgroundNoise();
             sound = new Sound();
-            herolv2 = new Character(0, 720, 100, 100);
+            herolv2 = new Character(0, 1000, 100, 100);
             bunny = new Bunny(4550, 90, 50, 50, 4550, 4700);
             enemiesLv2 = new List<Enemy>
             {
@@ -68,7 +68,7 @@ namespace project_take_2.Content.levels
         public void ResetLevel2()
         {
             herolv2.Live= true;
-            herolv2.PositionAndSize = new Rectangle(0, 720, 100, 100);
+            herolv2.PositionAndSize = new Rectangle(0, 1000, 100, 100);
             sound.Played = false;
         }
         public void Draw(SpriteBatch _spriteBatch)
