@@ -171,9 +171,9 @@ namespace project_take_2.Content.Hero
         public void Collision(Enemy enemy)
         {
             if (hitbox.Intersects(enemy.Hitbox))
-                live = false;
+                Live = false;
             if (hitbox.Intersects(Bunny.hitbox))
-                victory = true;
+                Victory = true;
         }
         private void HitboxUpdate()
         {
