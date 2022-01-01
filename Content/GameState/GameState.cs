@@ -48,7 +48,7 @@ namespace DruidsQuest.Content.GameState
         public void Update(GameTime gameTime)
         {
             if (splash.Splash)
-                splash.update(gameTime);
+                splash.Update(gameTime);
             else
                 splash.UnloadContent();
             if (start.Menu)

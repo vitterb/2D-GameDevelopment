@@ -189,6 +189,12 @@
 /processorParam:Quality=Best
 /build:Sounds/running.mp3
 
+#begin Sounds/Splashscreen.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Splashscreen.mp3
+
 #begin Sounds/victory.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

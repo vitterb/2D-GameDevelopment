@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using DruidsQuest.Content.Sounds;
+using Druids_Quest.Content.Sounds;
 
 namespace DruidsQuest.Content.GameState
 {
@@ -13,6 +14,9 @@ namespace DruidsQuest.Content.GameState
         private double timer;
         private bool splash;
         private ContentManager _content;
+        private SplashScreenSound sound;
+        private bool PlaySound = true;
+        
         #endregion
 
         #region proporties
@@ -25,6 +29,7 @@ namespace DruidsQuest.Content.GameState
             timer = 0;
             splash = true;
             position = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
+            sound = new SplashScreenSound();   
         }
         #endregion
 
@@ -33,6 +38,8 @@ namespace DruidsQuest.Content.GameState
         {
             _content = new ContentManager(content.ServiceProvider, "Content");
             splashscreenTexture = _content.Load<Texture2D>("Gamescreens/Logo");
+            sound.LoadContent(_content);
+
         }
         public void UnloadContent()
         {
@@ -49,12 +56,17 @@ namespace DruidsQuest.Content.GameState
                 );
             _spriteBatch.End();
         }
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             timer++;
-            if (timer == 250)
+            if (timer == 680)
             {
                 splash = false;
+            }
+            if (PlaySound)
+            {
+                sound.Play();
+                PlaySound = false;
             }
         } 
         #endregion
