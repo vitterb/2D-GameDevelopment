@@ -50,7 +50,6 @@ namespace project_take_2.Content.Hero
             middle;
         private readonly string 
             gameOver = "GAME OVER";
-        private readonly Sound sound;
         #endregion
 
         #region proporties

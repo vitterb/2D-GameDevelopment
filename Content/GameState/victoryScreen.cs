@@ -18,6 +18,7 @@ namespace project_take_2.Content.GameState
         private SpriteFont font;
         private string victoryString = "          Victory";
         private Vector2 victoryPosition;
+        private Sound sound;
         #endregion
 
         #region proporties
@@ -30,6 +31,7 @@ namespace project_take_2.Content.GameState
             victoryScreen = false;
             position = new Rectangle(0, 0, Game1.screenW, Game1.screenH);
             victoryPosition = new Vector2(Game1.screenW/2, Game1.screenH - Game1.screenH/3);
+            sound = new Sound();
         }
         #endregion
 
@@ -39,6 +41,7 @@ namespace project_take_2.Content.GameState
             _content = new ContentManager(content.ServiceProvider, "Content");
             victoryScreenTexture = _content.Load<Texture2D>("Gamescreens/rabbit campfire");
             font = _content.Load<SpriteFont>("Font/Game");
+            sound.LoadContent(content); 
         }
         public void UnloadContent()
         {
@@ -62,6 +65,7 @@ namespace project_take_2.Content.GameState
             if (Character.victory)
             {
                 victoryScreen = true;
+                sound.PlayVictory();
             }
         }
         #endregion

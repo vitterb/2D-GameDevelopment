@@ -41,19 +41,19 @@ namespace project_take_2.Content.Sounds
                     soundeffects[0].Play();
             if (!Character.live && !playedScream)
             {
-                playScream();
+                PlayScream();
             }
             if (Character.victory && !playedVictory)
             {
-                playVictory();
+                PlayVictory();
             }
         }
-        public void playVictory()
+        public void PlayVictory()
         {
             soundeffects[2].Play();
             playedVictory = true;
         }
-        public void playScream()
+        public void PlayScream()
         {
             soundeffects[1].Play();
             playedScream = true;

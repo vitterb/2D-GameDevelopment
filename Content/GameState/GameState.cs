@@ -69,11 +69,12 @@ namespace project_take_2.Content.GameState
                 lv2.Update(gameTime);
             if (!Character.live || Character.victory)
             {
+                if(Character.victory)
+                victory.VictoryScreen = true;
                 counter++;
                 if (counter >= 500)
                 {
                     victory.VictoryScreen = false;
-                    Character.victory = false;
                     start.Menu = true;
                     if (lv1.Level1Active)
                     {
@@ -85,17 +86,13 @@ namespace project_take_2.Content.GameState
                         lv2.Level2Active = false;
                         lv2.ResetLevel2();
                     }
-                    
+                    Character.victory = false;
+                    lv1.Level1Active = false;
+                    lv2.Level2Active = false;
                 }
             }
             if (Character.live && !Character.victory)
                 counter = 0;
-            if (Character.victory)
-            {
-                lv1.Level1Active = false;
-                lv2.Level2Active = false;
-                victory.VictoryScreen = true;
-            }
         }
         public void LoadContent(ContentManager content)
         {
@@ -108,12 +105,14 @@ namespace project_take_2.Content.GameState
         } 
         public void loadLevel1()
         {
+            lv1.UnloadContent();
             lv1 = new Level1();
             lv1.LoadContent(_content);
             start.Button1 = false;
         }
         public void LoadLevel2()
         {
+            lv2.UnLoadContent();
             lv2 = new Level2();
             lv2.LoadContent(_content);
             start.Button2 = false;
