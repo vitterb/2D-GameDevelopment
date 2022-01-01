@@ -2,7 +2,7 @@
 
 using Microsoft.Xna.Framework;
 
-namespace project_take_2.Content.Animation
+namespace DruidsQuest.Content.Animation
 {
     public class AnimationFrame
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using project_take_2.Content.interfaces;
+using DruidsQuest.Content.interfaces;
 using Microsoft.Xna.Framework;
-using project_take_2.Content.Sounds;
+using DruidsQuest.Content.Sounds;
 
-namespace project_take_2.Content.Input
+namespace DruidsQuest.Content.Input
 {
     public class KeyInput : IInput
     {

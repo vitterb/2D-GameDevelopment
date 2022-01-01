@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using project_take_2.Content.Hero;
-using project_take_2.Content.levels;
+using DruidsQuest.Content.Hero;
+using DruidsQuest.Content.levels;
 
-namespace project_take_2.Content.GameState
+namespace DruidsQuest.Content.GameState
 {
     public class GameState
     {

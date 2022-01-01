@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace project_take_2.Content.GameState
+namespace DruidsQuest.Content.GameState
 {
     public class Start
     {

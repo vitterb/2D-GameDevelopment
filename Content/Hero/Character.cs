@@ -3,14 +3,14 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using project_take_2.Content.Animation;
-using project_take_2.Content.Enemies;
-using project_take_2.Content.interfaces;
-using static project_take_2.Content.levels.RectangleHelper;
-using static project_take_2.Content.Hero.CharacterState;
-using project_take_2.Content.Sounds;
+using DruidsQuest.Content.Animation;
+using DruidsQuest.Content.Enemies;
+using DruidsQuest.Content.interfaces;
+using static DruidsQuest.Content.levels.RectangleHelper;
+using static DruidsQuest.Content.Hero.CharacterState;
+using DruidsQuest.Content.Sounds;
 
-namespace project_take_2.Content.Hero
+namespace DruidsQuest.Content.Hero
 {
     public class Character : IHero
     {

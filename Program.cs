@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace project_take_2
+namespace DruidsQuest
 {
     public static class Program
     {

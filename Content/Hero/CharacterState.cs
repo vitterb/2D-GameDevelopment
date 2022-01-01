@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
 
-namespace project_take_2.Content.Hero
+namespace DruidsQuest.Content.Hero
 {
     public class CharacterState
     {

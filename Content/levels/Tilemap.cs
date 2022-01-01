@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace project_take_2.Content.levels
+namespace DruidsQuest.Content.levels
 {
     internal class Tilemap
     {

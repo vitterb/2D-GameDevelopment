@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using project_take_2.Content.Hero;
+using DruidsQuest.Content.Hero;
 
-namespace project_take_2.Content.Sounds
+namespace DruidsQuest.Content.Sounds
 {
     public class Sound
     {

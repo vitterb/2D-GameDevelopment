@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace project_take_2.Content.Backgrounds
+namespace DruidsQuest.Content.Backgrounds
 {
     public class BackgroundDarkMystery
     {

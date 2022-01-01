@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 
-namespace project_take_2.Content.Sounds
+namespace DruidsQuest.Content.Sounds
 {
     internal class BackgroundNoise
     {

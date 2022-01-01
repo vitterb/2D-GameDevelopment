@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace project_take_2.Content.levels
+namespace DruidsQuest.Content.levels
 {
     internal class Tiles
     {

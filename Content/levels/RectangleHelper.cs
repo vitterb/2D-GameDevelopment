@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace project_take_2.Content.levels
+namespace DruidsQuest.Content.levels
 {
     static class RectangleHelper
     {

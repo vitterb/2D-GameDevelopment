@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using project_take_2.Content.Animation;
+using DruidsQuest.Content.Animation;
 
-namespace project_take_2.Content.Enemies
+namespace DruidsQuest.Content.Enemies
 {
     class Bunny 
     {

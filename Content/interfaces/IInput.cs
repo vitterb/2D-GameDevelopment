@@ -2,7 +2,7 @@
 
 
 
-namespace project_take_2.Content.interfaces
+namespace DruidsQuest.Content.interfaces
 {
     interface IInput
     {

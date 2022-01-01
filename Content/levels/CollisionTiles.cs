@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace project_take_2.Content.levels
+namespace DruidsQuest.Content.levels
 {
     internal class CollisionTiles : Tiles
     { 

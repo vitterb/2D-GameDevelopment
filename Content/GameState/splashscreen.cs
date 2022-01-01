@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using project_take_2.Content.Sounds;
+using DruidsQuest.Content.Sounds;
 
-namespace project_take_2.Content.GameState
+namespace DruidsQuest.Content.GameState
 {
     public class Splashscreen
     {

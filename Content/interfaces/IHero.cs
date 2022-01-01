@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using project_take_2.Content.Enemies;
+using DruidsQuest.Content.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace project_take_2.Content.interfaces
+namespace DruidsQuest.Content.interfaces
 {
     interface IHero
     {

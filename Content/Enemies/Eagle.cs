@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using project_take_2.Content.Animation;
-using project_take_2.Content.interfaces;
+using DruidsQuest.Content.Animation;
+using DruidsQuest.Content.interfaces;
 
-namespace project_take_2.Content.Enemies
+namespace DruidsQuest.Content.Enemies
 {
     class Eagle : Enemy, IEnemies
     {

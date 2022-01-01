@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using project_take_2.Content.Hero;
+using DruidsQuest.Content.Hero;
 
-namespace project_take_2.Content.Input
+namespace DruidsQuest.Content.Input
 {
     public class Camera
     {

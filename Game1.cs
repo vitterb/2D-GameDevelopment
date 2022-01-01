@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using project_take_2.Content.GameState;
-using project_take_2.Content.Input;
-using project_take_2.Content.levels;
+using DruidsQuest.Content.GameState;
+using DruidsQuest.Content.Input;
+using DruidsQuest.Content.levels;
 
-namespace project_take_2
+namespace DruidsQuest
 {
     public class Game1 : Game
     {

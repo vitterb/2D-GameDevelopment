@@ -2,16 +2,16 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using project_take_2.Content.Backgrounds;
-using project_take_2.Content.Enemies;
-using project_take_2.Content.Hero;
-using project_take_2.Content.Input;
-using project_take_2.Content.interfaces;
-using project_take_2.Content.Sounds;
+using DruidsQuest.Content.Backgrounds;
+using DruidsQuest.Content.Enemies;
+using DruidsQuest.Content.Hero;
+using DruidsQuest.Content.Input;
+using DruidsQuest.Content.interfaces;
+using DruidsQuest.Content.Sounds;
 using System.Collections.Generic;
 
 
-namespace project_take_2.Content.levels
+namespace DruidsQuest.Content.levels
 {
     public class Level2 :ILevel
     {

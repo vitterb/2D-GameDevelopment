@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace project_take_2.Content.interfaces
+namespace DruidsQuest.Content.interfaces
 {
     internal interface ILevel
     {

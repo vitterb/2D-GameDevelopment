@@ -2,10 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using project_take_2.Content.Animation;
-using project_take_2.Content.interfaces;
+using DruidsQuest.Content.Animation;
+using DruidsQuest.Content.interfaces;
 
-namespace project_take_2.Content.Enemies
+namespace DruidsQuest.Content.Enemies
 {
     public class Bear : Enemy, IEnemies
     {
