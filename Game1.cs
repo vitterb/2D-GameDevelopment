@@ -53,7 +53,7 @@ namespace DruidsQuest
                 Exit();
             }
             game.Update(gameTime);
-           
+            
             keyInput.Update(gameTime);
 
             base.Update(gameTime);
